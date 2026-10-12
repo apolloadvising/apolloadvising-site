@@ -14,7 +14,7 @@ jobs:
           exec > result.txt 2>&1
           echo "== before"; gh api repos/${{ github.repository }}/pages || true
           echo "== health"; gh api repos/${{ github.repository }}/pages/health || true
-          echo "== set cname"; gh api -X PUT repos/${{ github.repository }}/pages -f cname=www.apolloadvising.com || true
+          echo "== curl"; curl -sS -o /dev/null -w "%{http_code} ssl=%{ssl_verify_result}\n" https://www.apolloadvising.com/faq/ || true
           sleep 20
           echo "== after"; gh api repos/${{ github.repository }}/pages || true
       - run: |
