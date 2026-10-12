@@ -1,0 +1,12 @@
+name: site-check
+on: push
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          for u in https://www.apolloadvising.com/ https://www.apolloadvising.com/faq/ https://apolloadvising.com/ http://apolloadvising.com/ https://www.apolloadvising.com/book-online https://book.apolloadvising.com/; do
+            echo "== $u"; curl -sS -o /dev/null -w "%{http_code} -> %{redirect_url} ssl_verify=%{ssl_verify_result}\n" "$u" || true
+          done
+          echo | openssl s_client -connect www.apolloadvising.com:443 -servername www.apolloadvising.com 2>/dev/null | openssl x509 -noout -subject -issuer -dates || true
+          dig +short www.apolloadvising.com apolloadvising.com book.apolloadvising.com || true
