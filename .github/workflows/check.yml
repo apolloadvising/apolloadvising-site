@@ -2,18 +2,21 @@ name: site-check
 on: push
 permissions:
   contents: write
+  pages: write
 jobs:
   check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: |
+      - env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
           exec > result.txt 2>&1
-          for u in https://www.apolloadvising.com/ https://www.apolloadvising.com/faq/ https://apolloadvising.com/ http://apolloadvising.com/ https://www.apolloadvising.com/book-online https://book.apolloadvising.com/; do
-            echo "== $u"; curl -sS -o /dev/null -w "%{http_code} -> %{redirect_url} ssl_verify=%{ssl_verify_result}\n" "$u" || true
-          done
-          echo | openssl s_client -connect www.apolloadvising.com:443 -servername www.apolloadvising.com 2>/dev/null | openssl x509 -noout -subject -issuer -dates || true
-          dig +short www.apolloadvising.com apolloadvising.com book.apolloadvising.com || true
+          echo "== before"; gh api repos/${{ github.repository }}/pages || true
+          echo "== health"; gh api repos/${{ github.repository }}/pages/health || true
+          echo "== set cname"; gh api -X PUT repos/${{ github.repository }}/pages -f cname=www.apolloadvising.com || true
+          sleep 20
+          echo "== after"; gh api repos/${{ github.repository }}/pages || true
       - run: |
           git config user.name "Apollo Advising"; git config user.email "denver@apolloadvising.com"
           git add result.txt; git commit -m "check result [skip ci]"; git push
