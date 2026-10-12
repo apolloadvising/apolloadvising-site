@@ -1,0 +1,53 @@
+== https://www.apolloadvising.com/
+curl: (60) SSL: no alternative certificate subject name matches target host name 'www.apolloadvising.com'
+More details here: https://curl.se/docs/sslcerts.html
+
+curl failed to verify the legitimacy of the server and therefore could not
+establish a secure connection to it. To learn more about this situation and
+how to fix it, please visit the web page mentioned above.
+000 ->  ssl_verify=1
+== https://www.apolloadvising.com/faq/
+curl: (60) SSL: no alternative certificate subject name matches target host name 'www.apolloadvising.com'
+More details here: https://curl.se/docs/sslcerts.html
+
+curl failed to verify the legitimacy of the server and therefore could not
+establish a secure connection to it. To learn more about this situation and
+how to fix it, please visit the web page mentioned above.
+000 ->  ssl_verify=1
+== https://apolloadvising.com/
+curl: (60) SSL: no alternative certificate subject name matches target host name 'apolloadvising.com'
+More details here: https://curl.se/docs/sslcerts.html
+
+curl failed to verify the legitimacy of the server and therefore could not
+establish a secure connection to it. To learn more about this situation and
+how to fix it, please visit the web page mentioned above.
+000 ->  ssl_verify=1
+== http://apolloadvising.com/
+301 -> http://www.apolloadvising.com/ ssl_verify=0
+== https://www.apolloadvising.com/book-online
+curl: (60) SSL: no alternative certificate subject name matches target host name 'www.apolloadvising.com'
+More details here: https://curl.se/docs/sslcerts.html
+
+curl failed to verify the legitimacy of the server and therefore could not
+establish a secure connection to it. To learn more about this situation and
+how to fix it, please visit the web page mentioned above.
+000 ->  ssl_verify=1
+== https://book.apolloadvising.com/
+200 ->  ssl_verify=0
+subject=CN = *.github.io
+issuer=C = US, O = Let's Encrypt, CN = YR1
+notBefore=Sep 30 23:44:46 2026 GMT
+notAfter=Dec 29 23:44:45 2026 GMT
+apolloadvising.github.io.
+185.199.110.153
+185.199.111.153
+185.199.109.153
+185.199.108.153
+185.199.108.153
+185.199.109.153
+185.199.111.153
+185.199.110.153
+cdn3.wixdns.net.
+cfd.wixdns.net.
+162.159.143.12
+172.66.3.8
