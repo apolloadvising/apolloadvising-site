@@ -1,7 +1,7 @@
 == before
-{"url":"https://api.github.com/repos/apolloadvising/apolloadvising-site/pages","status":"built","cname":"www.apolloadvising.com","custom_404":true,"html_url":"http://www.apolloadvising.com/","build_type":"legacy","source":{"branch":"gh-pages","path":"/"},"public":true,"protected_domain_state":null,"pending_domain_unverified_at":null,"https_enforced":false}== health
+{"url":"https://api.github.com/repos/apolloadvising/apolloadvising-site/pages","status":"built","cname":"www.apolloadvising.com","custom_404":true,"html_url":"http://www.apolloadvising.com/","build_type":"legacy","source":{"branch":"gh-pages","path":"/"},"public":true,"protected_domain_state":null,"pending_domain_unverified_at":null,"https_certificate":{"state":"approved","description":"The certificate has been approved.","domains":["www.apolloadvising.com","apolloadvising.com"],"expires_at":"2027-01-10"},"https_enforced":false}== health
 {"message":"Resource not accessible by integration","documentation_url":"https://docs.github.com/rest/pages/pages#get-a-dns-health-check-for-github-pages","status":"403"}gh: Resource not accessible by integration (HTTP 403)
-== set cname
-{"message":"Resource not accessible by integration","documentation_url":"https://docs.github.com/rest/pages/pages#update-information-about-a-apiname-pages-site","status":"403"}gh: Resource not accessible by integration (HTTP 403)
+== curl
+200 ssl=0
 == after
-{"url":"https://api.github.com/repos/apolloadvising/apolloadvising-site/pages","status":"built","cname":"www.apolloadvising.com","custom_404":true,"html_url":"http://www.apolloadvising.com/","build_type":"legacy","source":{"branch":"gh-pages","path":"/"},"public":true,"protected_domain_state":null,"pending_domain_unverified_at":null,"https_enforced":false}
+{"url":"https://api.github.com/repos/apolloadvising/apolloadvising-site/pages","status":"built","cname":"www.apolloadvising.com","custom_404":true,"html_url":"http://www.apolloadvising.com/","build_type":"legacy","source":{"branch":"gh-pages","path":"/"},"public":true,"protected_domain_state":null,"pending_domain_unverified_at":null,"https_certificate":{"state":"approved","description":"The certificate has been approved.","domains":["www.apolloadvising.com","apolloadvising.com"],"expires_at":"2027-01-10"},"https_enforced":false}
