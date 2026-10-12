@@ -1,0 +1,42 @@
+# Apollo Advising
+
+> Apollo Advising (Apollo RE Advising LLC) is an hourly real estate consulting firm for rental property owners across the United States. Founder Denver McClure, a Marine Corps veteran and active Texas landlord, helps first-time investors, early-stage landlords, and retirees decide whether to buy, hold, sell, refinance, change rental strategy (short-term, medium-term, long-term), or pursue a 1031 exchange on a property.
+
+## Key facts
+- Pricing: $199 per hour, or $499 for a three-hour block used within 12 months. Time is billed in 15-minute increments. The first 30-minute call is free.
+- Written option, no call needed: a Rental Property Analysis Report on one property, $99 for a PDF within 2 business days or $149 for rush delivery within 1 business day, with a code for 50% off the first one-hour strategy session, good for 30 days after delivery. Order at https://www.apolloadvising.com/property-analysis/
+- Sessions are by phone or Zoom, nationwide. Book at https://www.apolloadvising.com/book/
+- Scope: real property and business operations only. Apollo Advising does not provide legal, tax, investment, insurance, or lending advice, and does not advise on securities such as Delaware Statutory Trusts (DSTs), REITs, TIC interests, private placements, or syndications.
+- Investment advice is offered only through Nashional Independent Investment Management LLC, a separate registered investment adviser.
+- Contact: denver@apolloadvising.com
+
+## Short answers
+- Should I sell my rental property or keep it? Compare keeping, selling, and exchanging side by side, starting with return on equity: annual net cash flow divided by market value minus loan balance. Example: a $450,000 rental with a $150,000 loan netting $9,000 a year earns 3% on its $300,000 of equity, before appreciation and loan paydown.
+- What are the 1031 exchange deadlines? 45 days after the sale closes to identify replacement property in writing, and 180 days to close (sooner if the tax return is due first, unless extended). A qualified intermediary must hold the proceeds.
+- Airbnb, medium-term, or long-term rental? Compare net income after all costs and the time each takes. Short-term usually has the highest gross and highest costs; furnished stays of 30+ days often land in between.
+- Does Apollo Advising give investment advice? No. Investment advice is offered only through Nashional Independent Investment Management LLC, a separate registered investment adviser.
+
+## Pages
+- [Home](https://www.apolloadvising.com/)
+- [FAQ](https://www.apolloadvising.com/faq/)
+- [Buying a rental property](https://www.apolloadvising.com/buying-a-rental-property/)
+- [Hold, sell, or 1031 exchange](https://www.apolloadvising.com/hold-sell-or-1031-exchange/)
+- [Refinance and equity decisions](https://www.apolloadvising.com/refinance-and-equity-decisions/)
+- [Choosing a rental strategy](https://www.apolloadvising.com/rental-strategy/)
+- [Rentals in retirement](https://www.apolloadvising.com/retirees-and-long-time-landlords/)
+- [Guides](https://www.apolloadvising.com/guides/)
+- [Return on equity for a rental property](https://www.apolloadvising.com/guides/rental-property-return-on-equity/)
+- [The 1031 exchange timeline](https://www.apolloadvising.com/guides/1031-exchange-timeline/)
+- [Short-term vs medium-term vs long-term rentals](https://www.apolloadvising.com/guides/short-term-vs-medium-term-vs-long-term-rental/)
+- [Free tools](https://www.apolloadvising.com/tools/)
+- [1031 exchange deadline calculator](https://www.apolloadvising.com/tools/1031-exchange-deadline-calculator/)
+- [Return on equity calculator](https://www.apolloadvising.com/tools/return-on-equity-calculator/)
+- [Short-term vs medium-term vs long-term rental calculator](https://www.apolloadvising.com/tools/rental-strategy-calculator/)
+- [Rental property glossary](https://www.apolloadvising.com/glossary/)
+- [Rental property analysis report, $99](https://www.apolloadvising.com/property-analysis/)
+- [About Denver McClure](https://www.apolloadvising.com/about/)
+- [Book a session](https://www.apolloadvising.com/book/)
+- [Disclosures](https://www.apolloadvising.com/disclosures/)
+
+## Full text
+- [llms-full.txt](https://www.apolloadvising.com/llms-full.txt): every FAQ answer, short answer, and glossary definition in plain text
