@@ -477,3 +477,31 @@ h2[id], h3[id], section[id] { scroll-margin-top: 5.5rem; }
 .pa-strip strong { color: var(--ink); }
 .pa-strip__go { font-weight: 600; white-space: nowrap; border-bottom: 1px solid currentColor; }
 .pa-sec > .pa-f + .pa-f { margin-top: 1.25rem; }
+
+/* Lead magnet: inline worksheet signup */
+.lead { border-top: 2px solid var(--ink); padding-top: 1.5rem; margin: 3.5rem 0 1rem; }
+.lead h2 { font-size: clamp(1.35rem, 2.6vw, 1.75rem); margin: 0 0 .5rem; }
+.lead > p { color: var(--graphite); margin: 0 0 1.25rem; }
+.lead--page { border: 0; background: var(--oxblood-soft); border-radius: 20px; padding: 1.75rem; margin: 0 0 3rem; }
+.lead--page .lead { border: 0; padding: 0; margin: 0; }
+.lead__row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr) auto; gap: .75rem; align-items: end; }
+.lead label span { display: block; font-size: .85rem; color: var(--graphite); margin-bottom: .3rem; }
+.lead input[type=email], .lead input:not([type]) { width: 100%; font: inherit; font-size: 1rem; padding: .7rem .85rem; border: 1px solid var(--line); border-radius: 10px; background: #fff; color: var(--ink); min-height: 46px; }
+.lead input:focus-visible { outline: 2px solid var(--oxblood); outline-offset: 1px; border-color: var(--oxblood); }
+.lead .btn { min-height: 46px; white-space: nowrap; }
+.lead__ok { display: flex; gap: .55rem; align-items: flex-start; font-size: .9rem; color: var(--graphite); margin-top: .85rem; line-height: 1.45; }
+.lead__ok input { margin-top: .2rem; accent-color: var(--oxblood); width: 1rem; height: 1rem; flex: none; }
+.lead__err { color: var(--oxblood); font-size: .95rem; margin: .75rem 0 0; }
+.lead.is-done form { display: none; }
+.lead__done { font-size: 1.05rem; }
+@media (max-width: 640px) { .lead__row { grid-template-columns: 1fr; } .lead .btn { width: 100%; } }
+
+/* Guides index groups and checklist page */
+.guide-group { font-size: 1.1rem; color: var(--graphite); font-weight: 600; margin: 3.5rem 0 0; padding-bottom: .9rem; }
+.guide-group:first-child { margin-top: 0; }
+.checklist { padding-left: 1.4rem; }
+.checklist li { margin-bottom: 1.25rem; padding-left: .25rem; }
+.checklist li::marker { font-weight: 600; color: var(--oxblood); }
+.checklist h3 { font-size: 1.1rem; margin: 0 0 .25rem; }
+.checklist p { margin: 0; color: var(--graphite); }
+.article h3 { margin-top: 1.75rem; }
