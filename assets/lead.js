@@ -31,13 +31,13 @@
         var t = await token();
         var r = await fetch(API + "/form-submission-service/v4/submissions", {
           method: "POST", headers: { "Content-Type": "application/json", Authorization: t },
-          body: JSON.stringify({ submission: { formId: FORM_ID, submissions: {
+          body: JSON.stringify({ submission: { formId: form.getAttribute("data-form") || FORM_ID, submissions: {
             first_name_lm: first, email_lm: email, subscribe_lm: !!form.elements.optin.checked,
             source_lm: (form.getAttribute("data-source") || location.pathname).slice(0, 200)
           } } })
         });
         if (!r.ok) throw new Error("submit " + r.status);
-        window.location.href = NEXT;
+        window.location.href = form.getAttribute("data-next") || NEXT;
       } catch (x) {
         btn.disabled = false;
         btn.textContent = label;
