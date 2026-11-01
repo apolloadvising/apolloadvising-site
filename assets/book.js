@@ -3,6 +3,17 @@
 const API = "https://www.wixapis.com";
 const CLIENT_ID = "de8b48ef-b9f8-4f9f-9320-eb82d8403b47";
 const TZ = "America/Chicago";
+
+// Wix needs the staff member and location on appointment slots, or the hosted booking form fails.
+const STAFF_RESOURCE_TYPE = "1cd44cf8-756f-41c3-bd90-3e2ffcaf1155";
+function slotForCheckout(slot) {
+  const out = { serviceId: slot.serviceId, scheduleId: slot.scheduleId, startDate: slot.localStartDate, endDate: slot.localEndDate, timezone: TZ };
+  const group = (slot.availableResources || []).find((g) => g.resourceTypeId === STAFF_RESOURCE_TYPE) || (slot.availableResources || [])[0];
+  const res = group && group.resources && group.resources[0];
+  if (res) out.resource = { id: res.id, name: res.name, scheduleId: slot.scheduleId };
+  if (slot.location) out.location = Object.assign({}, slot.location);
+  return out;
+}
 const KEY = "apollo-visitor-" + CLIENT_ID;
 const SERVICES = {
   strategy: { id: "c4f0da76-bfae-4601-bf9d-070ae9de6519", name: "Strategy Session" },
@@ -102,7 +113,7 @@ async function loadAvailability() {
   try {
     let cursor = null, slots = [];
     do {
-      const body = { serviceId: SERVICES[current].id, fromLocalDate: ymd(start) + "T00:00:00", toLocalDate: ymd(end) + "T00:00:00", timeZone: TZ, bookable: true, cursorPaging: cursor ? { limit: 100, cursor } : { limit: 100 } };
+      const body = { serviceId: SERVICES[current].id, fromLocalDate: ymd(start) + "T00:00:00", toLocalDate: ymd(end) + "T00:00:00", timeZone: TZ, bookable: true, includeResourceTypeIds: [STAFF_RESOURCE_TYPE], cursorPaging: cursor ? { limit: 100, cursor } : { limit: 100 } };
       const res = await post("/service-availability/v2/time-slots", body);
       slots = slots.concat(res.timeSlots || []);
       cursor = res.cursorPagingMetadata && res.cursorPagingMetadata.cursors && res.cursorPagingMetadata.cursors.next;
@@ -144,7 +155,7 @@ async function checkout(slot, btn) {
       bookingsCheckout: {
         timezone: TZ,
         slotAvailability: {
-          slot: { serviceId: slot.serviceId, scheduleId: slot.scheduleId, startDate: slot.localStartDate, endDate: slot.localEndDate, timezone: TZ },
+          slot: slotForCheckout(slot),
           bookable: true
         }
       },
