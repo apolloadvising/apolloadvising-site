@@ -17,6 +17,7 @@ function slotForCheckout(slot) {
 const KEY = "apollo-visitor-" + CLIENT_ID;
 const SERVICES = {
   strategy: { id: "c4f0da76-bfae-4601-bf9d-070ae9de6519", name: "Strategy Session" },
+  block: { id: "16126947-fc7a-4d93-8964-c79f8efbbfac", name: "Strategy Session (3-Hour Block)" },
   intro: { id: "cc815296-149c-433d-8e57-0796c8bd26b9", name: "Free intro call" }
 };
 const PLAN_ID = "f72f4929-db1b-4ec0-b4d3-a0ab9b8d1a94";
@@ -70,7 +71,8 @@ const els = {
   status: document.getElementById("status"),
   plan: document.getElementById("buy-block")
 };
-let current = new URLSearchParams(location.search).get("s") === "intro" ? "intro" : "strategy";
+const requested = new URLSearchParams(location.search).get("s");
+let current = SERVICES[requested] ? requested : "strategy";
 let currentDay = null;
 
 function setStatus(msg, err) { els.status.textContent = msg || ""; els.status.classList.toggle("err", !!err); }
