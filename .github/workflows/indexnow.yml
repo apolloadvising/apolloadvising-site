@@ -1,0 +1,22 @@
+# Pings IndexNow (Bing, Yandex, others) with every sitemap URL after each publish to gh-pages.
+name: IndexNow
+
+on:
+  push:
+    branches: [gh-pages]
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for GitHub Pages to finish deploying
+        run: sleep 120
+      - name: Submit sitemap URLs to IndexNow
+        run: |
+          set -euo pipefail
+          urls=$(curl -fsSL "https://www.apolloadvising.com/sitemap.xml" | grep -oP "(?<=<loc>)[^<]+" | jq -R . | jq -s .)
+          body=$(jq -n --argjson u "$urls" '{host: "www.apolloadvising.com", key: "bf39475878c9b138642d3fb56e4e5962", keyLocation: "https://www.apolloadvising.com/bf39475878c9b138642d3fb56e4e5962.txt", urlList: $u}')
+          code=$(curl -s -o /dev/null -w "%{http_code}" -X POST "https://api.indexnow.org/IndexNow" -H "Content-Type: application/json; charset=utf-8" -d "$body")
+          echo "Submitted $(echo "$urls" | jq length) URLs, IndexNow responded $code"
+          [ "$code" = "200" ] || [ "$code" = "202" ]
