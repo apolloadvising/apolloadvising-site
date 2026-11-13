@@ -663,3 +663,7 @@ h2[id], h3[id], section[id] { scroll-margin-top: 5.5rem; }
 .toolbar__names { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .75rem 2.75rem; }
 .toolbar__names li { font-family: var(--display); font-weight: 700; text-transform: uppercase; font-size: clamp(1.5rem, 3vw, 2.2rem); letter-spacing: .02em; color: #fff; }
 @media (max-width: 860px) { .toolbar { grid-template-columns: 1fr; } }
+/* Long single words in the expanded display face must fit a 390px phone */
+.display { overflow-wrap: break-word; }
+.page-hero--dark h1 { font-size: clamp(2.2rem, 9.4vw, 8.6rem); }
+@media (max-width: 480px) { .launch__h, .launch--page .launch__h, .door h2, .own__head h2, .finale h2 { font-size: clamp(2.1rem, 10vw, 3rem); } }
