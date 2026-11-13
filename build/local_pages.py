@@ -73,12 +73,12 @@ def _local_service(path, name, area):
     return {"@context": "https://schema.org", "@type": "Service", "@id": BASE + path + "#service", "name": name,
             "serviceType": "Rental property consulting", "provider": {"@id": BASE + "/#business"},
             "areaServed": area, "url": BASE + path,
-            "offers": [{"@type": "Offer", "price": "199", "priceCurrency": "USD", "description": "Strategy session, per hour"},
+            "offers": [{"@type": "Offer", "price": "299", "priceCurrency": "USD", "description": "Strategy session, per hour"},
                        {"@type": "Offer", "price": "0", "priceCurrency": "USD", "description": "30-minute intro call"}]}
 
 
 def _cta():
-    return """<div class="callout"><h2>Start with 30 free minutes.</h2><p>$199 per hour, billed in 15-minute increments, or $499 for a three-hour block. Sessions are by phone or Zoom. Prefer it in writing? Order a <a class="link" href="/property-analysis/">$99 property analysis report</a>.</p><div class="actions"><a class="btn" href="/book/?s=intro">Book a free call</a><a class="btn btn--quiet" href="/book/">Book a session</a></div></div>"""
+    return """<div class="callout"><h2>Start with 30 free minutes.</h2><p>$299 per hour, billed in 15-minute increments, or $799 for a three-hour block. Sessions are by phone or Zoom. Prefer it in writing? Order a <a class="link" href="/property-analysis/">$99 property analysis report</a>.</p><div class="actions"><a class="btn" href="/book/?s=intro">Book a free call</a><a class="btn btn--quiet" href="/book/">Book a session</a></div></div>"""
 
 
 def county_page(name, c):
@@ -86,7 +86,7 @@ def county_page(name, c):
     cad, cad_url = CAD[name]
     q = f"Do you offer rental property consulting in {name} County, Texas?"
     a = (f"Yes. Apollo Advising helps rental owners and buyers in {name} County, including {c['cities'].split(', ')[0]}, "
-         f"decide whether to buy, hold, sell, refinance, change rental strategy, or pursue a 1031 exchange. Sessions are $199 per hour by phone or Zoom, and the first 30 minutes are free.")
+         f"decide whether to buy, hold, sell, refinance, change rental strategy, or pursue a 1031 exchange. Sessions are $299 per hour by phone or Zoom, and the first 30 minutes are free.")
     factors = "".join(f"<h3>{h}</h3><p>{t}</p>" for h, t in c["factors"])
     body = f"""
 <section class="page-hero"><div class="prose"><h1>Rental property consulting in {name} County, Texas</h1><p class="lede">{c['lede']}</p>{byline()}</div></section>
@@ -106,7 +106,7 @@ def county_page(name, c):
 </div></section>{LEAD_JS}"""
     area = {"@type": "AdministrativeArea", "name": f"{name} County, Texas"}
     return path, page(path, f"Rental Property Consultant, {name} County TX | Apollo Advising",
-                      f"Hourly rental property consulting in {name} County, Texas: buy, hold, sell, refinance, rental strategy, and 1031 decisions. $199 per hour, first 30 minutes free.",
+                      f"Hourly rental property consulting in {name} County, Texas: buy, hold, sell, refinance, rental strategy, and 1031 decisions. $299 per hour, first 30 minutes free.",
                       body, schemas=[_local_service(path, f"Rental property consulting in {name} County, Texas", area), webpage(path, f"Rental property consulting in {name} County, Texas", c["lede"]), faq_schema([(q, a)])],
                       parent=("Dallas-Fort Worth", "/dallas-fort-worth/"))
 
@@ -115,7 +115,7 @@ def dfw_hub():
     path = "/dallas-fort-worth/"
     q = "Is there a rental property consultant in Dallas-Fort Worth?"
     a = ("Apollo Advising is an hourly rental property consulting firm based in McKinney, Texas, serving owners and buyers across Dallas, Collin, Denton, and Tarrant counties. "
-         "Founder Denver McClure is a Marine Corps veteran and North Texas landlord. Sessions are $199 per hour by phone or Zoom, and the first 30 minutes are free.")
+         "Founder Denver McClure is a Marine Corps veteran and North Texas landlord. Sessions are $299 per hour by phone or Zoom, and the first 30 minutes are free.")
     counties = "".join(f'<a href="/dallas-fort-worth/{c["slug"]}/"><strong>{n} County</strong><span>{", ".join(c["cities"].split(", ")[:4])}, and more</span></a>' for n, c in COUNTIES.items())
     factors = [
         ("Property tax is the big line item", "Texas has no state income tax, so property tax is often a rental's largest expense after the mortgage. Rentals do not get homestead protections, and the 20% cap on non-homestead appraisal increases is set to expire after 2026. Underwrite with the tax on your purchase price, not the seller's bill."),
@@ -134,7 +134,7 @@ def dfw_hub():
 <h2>What is different about owning a rental in DFW</h2>
 {fx}
 <h2>How it works</h2>
-<p>Book a free 30-minute call to talk through the decision. If a session makes sense, we work at $199 per hour in 15-minute increments, or $499 for a three-hour block. You get the numbers, the tradeoffs, and a list of questions for your CPA, attorney, lender, and insurance agent. You make the decision. Apollo Advising does not sell real estate or manage property; your fee pays for the analysis. Affiliated-firm relationships are listed in our <a class="link" href="/disclosures/">disclosures</a>.</p>
+<p>Book a free 30-minute call to talk through the decision. If a session makes sense, we work at $299 per hour in 15-minute increments, or $799 for a three-hour block. You get the numbers, the tradeoffs, and a list of questions for your CPA, attorney, lender, and insurance agent. You make the decision. Apollo Advising does not sell real estate or manage property; your fee pays for the analysis. Affiliated-firm relationships are listed in our <a class="link" href="/disclosures/">disclosures</a>.</p>
 {_cta()}
 {lead_form(path)}
 {guide_links(LOCAL_GUIDES)}

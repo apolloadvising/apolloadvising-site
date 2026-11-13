@@ -32,14 +32,14 @@ ORG = {
     "areaServed": {"@type": "Country", "name": "United States"},
     "founder": {"@id": BASE + "/about/#denver"},
     "foundingDate": "2023",
-    "priceRange": "$199-$2,500",
+    "priceRange": "$299-$2,499",
     "sameAs": ["https://www.linkedin.com/in/denvermcclure/", "https://www.instagram.com/denvermcclure_/", "https://www.facebook.com/denver.mcclure.1"],
     "makesOffer": [
-        {"@type": "Offer", "name": "Strategy Session (60 minutes)", "price": "199", "priceCurrency": "USD"},
-        {"@type": "Offer", "name": "3-Hour Strategy Block", "price": "499", "priceCurrency": "USD"},
+        {"@type": "Offer", "name": "Strategy Session (60 minutes)", "price": "299", "priceCurrency": "USD"},
+        {"@type": "Offer", "name": "3-Hour Strategy Block", "price": "799", "priceCurrency": "USD"},
         {"@type": "Offer", "name": "Introductory Call (30 minutes)", "price": "0", "priceCurrency": "USD"},
-        {"@type": "Offer", "name": "In-person half day, Dallas-Fort Worth", "price": "1500", "priceCurrency": "USD"},
-        {"@type": "Offer", "name": "In-person full day, Dallas-Fort Worth", "price": "2500", "priceCurrency": "USD"},
+        {"@type": "Offer", "name": "In-person half day, Dallas-Fort Worth", "price": "1249", "priceCurrency": "USD"},
+        {"@type": "Offer", "name": "In-person full day, Dallas-Fort Worth", "price": "1999", "priceCurrency": "USD"},
     ],
 }
 PERSON = {
@@ -185,7 +185,7 @@ FAQ = [
         ("How is this different from a real estate agent or property manager?", "Agents are usually paid when a transaction happens, and property managers are paid to run the property. Apollo Advising is paid by the hour for analysis, whether you buy, sell, or do nothing. Denver does hold interests in affiliated firms, which are listed on our disclosures page."),
     ]),
     ("Pricing and scheduling", [
-        ("How much does it cost?", "$199 per hour by phone or Zoom, or $499 for a three-hour block that you can use within 12 months. In person within 50 miles of Dallas: $1,500 for a half day or $2,500 for a full day, booked at least one week ahead. On site anywhere else: $2,500 per day plus travel and lodging at cost. The first 30-minute introductory call is free."),
+        ("How much does it cost?", "$299 per hour by phone or Zoom, or $799 for a three-hour block that you can use within 12 months. In person within 50 miles of Dallas: $1,249 for a half day or $1,999 for a full day, booked at least one week ahead. On site anywhere else: $2,499 per day plus travel and lodging at cost. The first 30-minute introductory call is free."),
         ("Can I get a written analysis without a call?", "Yes. The property analysis report covers one property in a written PDF: $99 for delivery within 2 business days, or $149 for delivery within 1 business day. You answer an intake form instead of booking a call, and the PDF comes with a code for 50% off your first one-hour strategy session, good for 30 days after delivery. Start at the property analysis page."),
         ("Do I pay for a full hour if we finish early?", "No. Time is billed in 15-minute increments, so a 45-minute session is billed as three quarters of an hour."),
         ("What counts as billable time?", "Meetings, plus work done for you outside of meetings: research, financial modeling, spreadsheets, written reports, recorded video walkthroughs, review of documents you send, and substantive correspondence. Anything expected to take more than an hour is estimated in advance and not started without your approval."),
@@ -304,8 +304,8 @@ PRICING = """
     <div class="head"><h2 id="pricing-h">Paid by the hour. Nothing else.</h2><p>No commissions on what you buy or sell. You pay for time and analysis, billed in 15-minute increments.</p></div>
     <div class="price-row">
       <div class="price"><h3>Intro call</h3><div class="amt">$0<span>30 minutes</span></div><p>Tell us about the property and the decision. If we are not the right fit, we will say so.</p><a class="btn btn--quiet" href="/book/?s=intro">Book a free call</a></div>
-      <div class="price"><h3>Strategy session</h3><div class="amt">$199<span>per hour</span></div><p>One hour by phone or Zoom on the decision in front of you. You set the agenda.</p><a class="btn" href="/book/">Book a session</a></div>
-      <div class="price price--feature"><h3>3-hour block</h3><div class="amt">$499<span>save $98</span></div><p>Three hours to use within 12 months, for sessions or work like research and written analysis.</p><a class="btn" href="/book/#block">Get the block</a></div>
+      <div class="price"><h3>Strategy session</h3><div class="amt">$299<span>per hour</span></div><p>One hour by phone or Zoom on the decision in front of you. You set the agenda.</p><a class="btn" href="/book/">Book a session</a></div>
+      <div class="price price--feature"><h3>3-hour block</h3><div class="amt">$799<span>save $98</span></div><p>Three hours to use within 12 months, for sessions or work like research and written analysis.</p><a class="btn" href="/book/#block">Get the block</a></div>
     </div>
     <a class="pa-strip" href="/property-analysis/"><span><strong>Prefer it in writing, without a call?</strong> Get a property analysis report on one rental. $99 for a PDF in 2 business days, or $149 for the next business day.</span><span class="pa-strip__go">Start the intake form</span></a>
     <p class="fine">Work done outside of meetings, such as research, modeling, written reports, and recorded walkthroughs, is billed at the same rate. Anything expected to take more than an hour is estimated in advance and not started without your approval. Reschedule or cancel at least 24 hours ahead and the time goes back to your balance.</p>
@@ -405,7 +405,7 @@ def real_estate_hub():
 <section class="band cta" style="border-top:1px solid var(--line)" aria-labelledby="cta-h">
   <div class="wrap">
     <h2 id="cta-h">Have a decision on a rental? Start with 30 free minutes.</h2>
-    <div class="actions"><a class="btn" href="/book/?s=intro">Book a free call</a><a class="btn btn--quiet" href="/book/">Book a $199 session</a></div>
+    <div class="actions"><a class="btn" href="/book/?s=intro">Book a free call</a><a class="btn btn--quiet" href="/book/">Book a $299 session</a></div>
   </div>
 </section>
 {EQUITY_JS}"""
@@ -458,7 +458,7 @@ def article(path, title, desc, h1, lede, sections, questions, leave, faq_qs, gua
 <h2>Questions we work through</h2>{qlist}
 <h2>What you leave with</h2>{llist}
 {guardrail_html}
-<div class="callout"><h2>Bring this decision to a session</h2><p>$199 per hour, billed in 15-minute increments, or $499 for a three-hour block. The first 30 minutes are free.</p><div class="actions"><a class="btn" href="/book/?s=intro">Book a free call</a><a class="btn btn--quiet" href="/book/">Book a session</a></div></div>
+<div class="callout"><h2>Bring this decision to a session</h2><p>$299 per hour, billed in 15-minute increments, or $799 for a three-hour block. The first 30 minutes are free.</p><div class="actions"><a class="btn" href="/book/?s=intro">Book a free call</a><a class="btn btn--quiet" href="/book/">Book a session</a></div></div>
 <h2>Related questions</h2>{faq_items(fitems)}
 {guide_links(guides) if guides else ""}
 <div class="related"><h2 style="font-size:1.25rem;margin:3rem 0 .5rem">Other decisions</h2>{related}</div>
@@ -466,7 +466,7 @@ def article(path, title, desc, h1, lede, sections, questions, leave, faq_qs, gua
 </div></section>{EQUITY_JS if after_first else ""}"""
     svc = {"@context": "https://schema.org", "@type": "Service", "name": service_name or h1, "description": desc,
            "provider": {"@id": BASE + "/#business"}, "areaServed": {"@type": "Country", "name": "United States"},
-           "offers": {"@type": "Offer", "price": "199", "priceCurrency": "USD", "description": "Per hour, billed in 15-minute increments"}}
+           "offers": {"@type": "Offer", "price": "299", "priceCurrency": "USD", "description": "Per hour, billed in 15-minute increments"}}
     qa = [(ANSWER_Q[path], answer)]
     ANSWERS[path] = answer
     return page(path, title, desc, body, schemas=[webpage(path, title.split(" | ")[0], desc), svc, faq_schema(qa + fitems)])
@@ -596,7 +596,7 @@ def guide(path, title, desc, h1, answer, question, body_html, related_pages, ext
 <section class="band" style="padding-top:2rem"><div class="prose article">
 <div class="answer"><p><strong>Short answer.</strong> {answer}</p></div>
 {body_html}
-<div class="callout"><h2>Want this run on your property?</h2><p>$199 per hour, billed in 15-minute increments, or $499 for a three-hour block. The first 30 minutes are free.</p><div class="actions"><a class="btn" href="/book/?s=intro">Book a free call</a><a class="btn btn--quiet" href="/book/">Book a session</a></div></div>
+<div class="callout"><h2>Want this run on your property?</h2><p>$299 per hour, billed in 15-minute increments, or $799 for a three-hour block. The first 30 minutes are free.</p><div class="actions"><a class="btn" href="/book/?s=intro">Book a free call</a><a class="btn btn--quiet" href="/book/">Book a session</a></div></div>
 {lead_form(path)}
 {guide_links(others)}
 <div class="related"><h2 style="font-size:1.25rem;margin:3rem 0 .5rem">Related decisions</h2>{rel}</div>
@@ -884,7 +884,7 @@ def tool_page(path, title, desc, h1, lede, tool_html, answer, question, after_ht
 <section class="band" style="padding-top:0"><div class="prose article">
 <div class="answer"><p><strong>Short answer.</strong> {answer}</p></div>
 {after_html}
-<div class="callout"><h2>Want a second set of eyes on the numbers?</h2><p>$199 per hour, billed in 15-minute increments, or $499 for a three-hour block. The first 30 minutes are free.</p><div class="actions"><a class="btn" href="/book/?s=intro">Book a free call</a><a class="btn btn--quiet" href="/book/">Book a session</a></div></div>
+<div class="callout"><h2>Want a second set of eyes on the numbers?</h2><p>$299 per hour, billed in 15-minute increments, or $799 for a three-hour block. The first 30 minutes are free.</p><div class="actions"><a class="btn" href="/book/?s=intro">Book a free call</a><a class="btn btn--quiet" href="/book/">Book a session</a></div></div>
 {guide_links(deeper)}
 <p class="note">This tool is general education, not legal, tax, investment, insurance, or lending advice. Results depend entirely on the figures you enter. See our <a class="link" href="/disclosures/">disclosures</a>.</p>
 </div></section>{scripts}"""
@@ -1152,7 +1152,7 @@ def book():
     <p class="step-label">Choose a session</p>
     <div class="choice" role="group" aria-label="Session type">
       <button type="button" data-service="intro" aria-pressed="false"><strong>Free intro call</strong><span>30 minutes by phone. See whether a session makes sense, or plan an in-person day.</span></button>
-      <button type="button" data-service="strategy" aria-pressed="true"><strong>One-on-one session, $199</strong><span>60 minutes by phone or Zoom, for AI or real estate. Prorated in 15-minute increments.</span></button>
+      <button type="button" data-service="strategy" aria-pressed="true"><strong>One-on-one session, $299</strong><span>60 minutes by phone or Zoom, for AI or real estate. Prorated in 15-minute increments.</span></button>
     </div>
   </div>
   <div>
@@ -1166,14 +1166,14 @@ def book():
   </div>
   <div class="callout" id="block" style="margin-top:1rem">
     <h2>Need more than an hour?</h2>
-    <p>The 3-hour strategy block is $499, saves $98, and is good for 12 months. Already have a block? <a href="/book/?s=block">Book a session with your block hours</a> and log in with the email you used at checkout.</p>
+    <p>The 3-hour strategy block is $799, saves $98, and is good for 12 months. Already have a block? <a href="/book/?s=block">Book a session with your block hours</a> and log in with the email you used at checkout.</p>
     <button class="btn" id="buy-block" type="button">Buy the 3-hour block</button>
   </div>
   <p class="note">Cancel or reschedule at least 24 hours ahead and the time goes back to your balance. Apollo Advising does not provide legal, tax, investment, insurance, or lending advice. Trouble booking? Email <a class="link" href="mailto:denver@apolloadvising.com">denver@apolloadvising.com</a>.</p>
 </div></section>
 <script type="module" src="/assets/book.js"></script>"""
     return page("/book/", "Book a Session with Denver McClure | Apollo Advising",
-                "Book a free 30-minute intro call or a $199 one-hour session by phone or Zoom, for AI training or a rental property decision.",
+                "Book a free 30-minute intro call or a $299 one-hour session by phone or Zoom, for AI training or a rental property decision.",
                 body)
 
 
@@ -1203,7 +1203,7 @@ LLMS = f"""# Apollo Advising
 > Apollo Advising (Apollo RE Advising LLC) is an hourly real estate consulting firm for rental property owners across the United States. Founder Denver McClure, a Marine Corps veteran and active Texas landlord, helps first-time investors, early-stage landlords, and retirees decide whether to buy, hold, sell, refinance, change rental strategy (short-term, medium-term, long-term), or pursue a 1031 exchange on a property.
 
 ## Key facts
-- Pricing: $199 per hour, or $499 for a three-hour block used within 12 months. Time is billed in 15-minute increments. The first 30-minute call is free.
+- Pricing: $299 per hour, or $799 for a three-hour block used within 12 months. Time is billed in 15-minute increments. The first 30-minute call is free.
 - Written option, no call needed: a Rental Property Analysis Report on one property, $99 for a PDF within 2 business days or $149 for rush delivery within 1 business day, with a code for 50% off the first one-hour strategy session, good for 30 days after delivery. Order at {BASE}/property-analysis/
 - Sessions are by phone or Zoom, nationwide. Book at {BASE}/book/
 - Scope: real property and business operations only. Apollo Advising does not provide legal, tax, investment, insurance, or lending advice, and does not advise on securities such as Delaware Statutory Trusts (DSTs), REITs, TIC interests, private placements, or syndications.

@@ -146,7 +146,7 @@ d.end()
 # ---------- Credit, sources, disclosures ----------
 d.section("Your next step", "Talk it through, at half price")
 d.raw(f"""<div class="coupon"><div class="eyebrow">Your session credit</div><div class="code">SAMPLE-50OFF</div>
-<p style="margin:4pt 0 0">50% off your first one-hour strategy session with Denver, so $99.50 instead of $199. Good for 30 days after delivery. Book at apolloadvising.com/book and enter the code at checkout.</p></div>""")
+<p style="margin:4pt 0 0">50% off your first one-hour strategy session with Denver, so $149.50 instead of $299. Good for 30 days after delivery. Book at apolloadvising.com/book and enter the code at checkout.</p></div>""")
 d.h2("Sources and method")
 d.p("Operating figures come from the owner's intake form and twelve months of booking data. Comparable rents come from Furnished Finder listings, which show asking rents rather than achieved rents. Value estimates come from online valuation models and are not an appraisal. Texas hotel occupancy tax treatment of stays of 30 consecutive days or more follows the Texas Comptroller's permanent resident exemption.",
     "Method: costs are split into fixed ownership costs and short-term-specific costs; short-term-specific revenue is netted against the costs it pays for; platform fees are added back; the breakeven rent is fixed cost plus medium-term operating cost divided by months occupied; vacancy and seasonality are tested explicitly.")

@@ -121,7 +121,7 @@ footer .legal {{ flex: 1; }}
 <div class="brand"><strong>Apollo Advising</strong>apolloadvising.com</div></header>
 <p class="intro">Work through these before you list, refinance, or sign anything. Each one has a place to find the number and something to watch for. You do not need every answer to be exact. You need them to be honest.</p>
 {rows}
-<footer><div class="next"><b>Want help with the answers?</b> Book a free 30-minute call at apolloadvising.com/book, or order a $99 written property analysis at apolloadvising.com/property-analysis. Hourly consulting is $199 per hour, billed in 15-minute increments.</div>
+<footer><div class="next"><b>Want help with the answers?</b> Book a free 30-minute call at apolloadvising.com/book, or order a $99 written property analysis at apolloadvising.com/property-analysis. Hourly consulting is $299 per hour, billed in 15-minute increments.</div>
 <div class="legal">General education only, not legal, tax, investment, insurance, or lending advice. Apollo RE Advising LLC, dba Apollo Advising, {ADDRESS}. {EMAIL}. &copy;2026.</div></footer>
 </body></html>"""
 

@@ -1,12 +1,12 @@
 # Exec'd from build.py. New homepage, AI practice hub, unified pricing, and the AI additions to FAQ, llms.txt and the index.
 # Pricing lives here so a rate change is one edit (Wix booking prices, PDFs and emails still need their own updates).
 
-RATE = 199          # per hour, phone or Zoom, both practices
-BLOCK = 499         # 3-hour block
+RATE = 299          # per hour, phone or Zoom, both practices
+BLOCK = 799         # 3-hour block
 BLOCK_SAVE = 3 * RATE - BLOCK
-HALF_DAY = 1500     # in person within 50 miles of Dallas, up to 4 hours
-FULL_DAY = 2500     # in person within 50 miles of Dallas, up to 8 hours
-TRAVEL_DAY = 2500   # on site outside the local radius, plus travel and lodging at cost
+HALF_DAY = 1249     # in person within 50 miles of Dallas, up to 4 hours
+FULL_DAY = 1999     # in person within 50 miles of Dallas, up to 8 hours
+TRAVEL_DAY = 2499   # on site outside the local radius, plus travel and lodging at cost
 LOCAL_MILES = 50
 LOCAL_NOTICE = "one week"
 TRAVEL_NOTICE = "two weeks"
