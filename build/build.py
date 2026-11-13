@@ -29,7 +29,8 @@ ORG = {
     "email": EMAIL,
     "telephone": "+1-214-542-7380",
     "address": {"@type": "PostalAddress", "streetAddress": "5900 S Lake Forest Dr, Suite 300", "addressLocality": "McKinney", "addressRegion": "TX", "postalCode": "75070", "addressCountry": "US"},
-    "areaServed": {"@type": "Country", "name": "United States"},
+    "areaServed": [{"@type": "Country", "name": "United States"}, {"@type": "AdministrativeArea", "name": "Dallas-Fort Worth, Texas"}],
+    "knowsAbout": ["AI for small business", "AI lead generation", "CRM development", "AI agents", "automated financial reporting", "rental property analysis", "1031 exchanges"],
     "founder": {"@id": BASE + "/about/#denver"},
     "foundingDate": "2023",
     "priceRange": "$299-$2,499",
@@ -130,6 +131,9 @@ def page(path, title, desc, body, schemas=(), current=None, parent=None):
         <h2>Practices</h2>
         <ul>
           <li><a href="/ai/">AI for business</a></li>
+          <li><a href="/ai/lead-generation/">AI lead generation</a></li>
+          <li><a href="/ai/ai-agents/">AI agents</a></li>
+          <li><a href="/ai/dallas-fort-worth/">AI in Dallas-Fort Worth</a></li>
           <li><a href="/real-estate/">Real estate decisions</a></li>
           <li><a href="/pricing/">Pricing</a></li>
           <li><a href="/buying-a-rental-property/">Buying a rental</a></li>
@@ -851,15 +855,15 @@ def guides_index():
         f'<h2 class="guide-group">{cat}</h2><div class="guide-list">' + "".join(f'<a href="{h}"><strong>{g[h][0]}</strong><span>{g[h][1]}</span></a>' for h in paths) + "</div>"
         for cat, paths in GUIDE_CATS)
     body = f"""
-<section class="page-hero"><div class="wrap"><h1>Guides</h1><p class="lede">Plain-language explanations of the numbers and rules behind the most common rental property decisions. Written and reviewed by Denver McClure.</p></div></section>
+<section class="page-hero"><div class="wrap"><h1>Guides</h1><p class="lede">Plain-language guides on putting AI to work in a business, and on the numbers and rules behind the most common rental property decisions. Written and reviewed by Denver McClure.</p></div></section>
 <section class="band" style="padding-top:1rem"><div class="wrap">{groups}
 <div class="prose" style="margin:4rem 0 0;width:auto;max-width:46rem">{lead_form("/guides/")}</div>
 <p class="note" style="max-width:46rem">{DISCLAIMER_LINE}</p></div></section>{LEAD_JS}"""
     coll = {"@context": "https://schema.org", "@type": "CollectionPage", "@id": BASE + "/guides/#webpage", "url": BASE + "/guides/",
-            "name": "Guides for rental property owners", "isPartOf": {"@id": BASE + "/#website"},
+            "name": "Guides on AI for business and rental property", "isPartOf": {"@id": BASE + "/#website"},
             "hasPart": [{"@id": BASE + h + "#article"} for h, _, _ in GUIDES]}
-    return page("/guides/", "Guides for Rental Property Owners | Apollo Advising",
-                "Plain-language guides for rental owners: 1031 exchanges, depreciation recapture, return on equity, DSCR loans, rental strategy, and Texas property taxes.",
+    return page("/guides/", "Guides on AI for Business and Rental Property | Apollo Advising",
+                "Plain-language guides on putting AI to work in a small business, plus 1031 exchanges, return on equity, DSCR loans, rental strategy, and Texas property taxes.",
                 body, schemas=[coll], current="/guides/")
 
 
@@ -1270,9 +1274,10 @@ def llms_full():
 
 exec(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "analysis_page.py")).read())
 exec(open(os.path.join(_HERE, "ai_pages.py")).read())
+exec(open(os.path.join(_HERE, "ai_seo.py")).read())
 exec(open(os.path.join(_HERE, "lead_page.py")).read())
 INDEXED += [h for h, _, _ in NEW_GUIDES] + [p for p, _ in LOCAL_PAGES] + [LEAD_PATH, MTR_PATH, "/free/"]
-PAGE_SLUGS_EXTRA = [h.strip("/") for h, _, _ in NEW_GUIDES] + [p.strip("/") for p, _ in LOCAL_PAGES] + [LEAD_PATH.strip("/"), LEAD_PATH.strip("/") + "/thanks", MTR_PATH.strip("/"), MTR_PATH.strip("/") + "/thanks", "free"]
+PAGE_SLUGS_EXTRA = [h.strip("/") for h, _, _ in NEW_GUIDES] + [p.strip("/") for p, _ in LOCAL_PAGES] + [LEAD_PATH.strip("/"), LEAD_PATH.strip("/") + "/thanks", MTR_PATH.strip("/"), MTR_PATH.strip("/") + "/thanks", "free"] + [p.strip("/") for p in ALL_AI]
 LLMS = LLMS.replace("- [Free tools]", "".join(f"- [{t}]({BASE}{h})\n" for h, t, _ in NEW_GUIDES) + f"- [Dallas-Fort Worth rental property consulting]({BASE}/dallas-fort-worth/)\n" + "".join(f"- [{n} County, Texas]({BASE}{p})\n" for p, n in LOCAL_PAGES[1:]) + f"- [Free hold, sell, or 1031 checklist]({BASE}{LEAD_PATH})\n- [Free guide: short-term vs medium-term rental]({BASE}{MTR_PATH})\n- [Sample rental property analysis report (PDF)]({BASE}{SAMPLE_PDF})\n- [Free tools]", 1)
 LLMS = LLMS.replace("- Contact: ", "- Local focus: based in McKinney, Texas, serving Dallas, Collin, Denton, and Tarrant counties, plus clients nationwide.\n- Contact: ", 1)
 
@@ -1331,6 +1336,10 @@ def main():
     write("ai/index.html", ai_hub())
     write("pricing/index.html", pricing_page())
     write("real-estate/index.html", real_estate_hub())
+    for _p, _d in AI_PAGES.items():
+        write(_p.strip("/") + "/index.html", ai_service_page(_p, _d))
+    for _p, _d in AI_GUIDES.items():
+        write(_p.strip("/") + "/index.html", ai_guide_page(_p, _d))
     write("faq/index.html", faq_page())
     for slug, html_text in PAGES.items():
         if "/" + slug + "/" in MTR_PAGES:

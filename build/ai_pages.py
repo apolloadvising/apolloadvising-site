@@ -172,8 +172,8 @@ def home():
     <div class="actions"><a class="btn btn--light" href="/book/?s=intro">Book a free call</a><a class="btn btn--ghost" href="/pricing/">See pricing</a></div>
   </div>
 </section>"""
-    return page("/", "AI Training for Business Owners and Real Estate Decisions | Apollo Advising",
-                "One-on-one AI training from Denver McClure, an owner who runs his companies on AI every day, plus independent hourly analysis for rental property decisions. Zoom nationwide or in person in Dallas-Fort Worth.",
+    return page("/", "AI for Business and Real Estate Decisions | Apollo Advising",
+                "One-on-one AI training from Denver McClure, an owner who runs his companies on AI, plus hourly rental property analysis. Zoom nationwide or in person in DFW.",
                 body, schemas=[WEBSITE, faq_schema(teaser)])
 
 
@@ -196,6 +196,12 @@ def ai_hub():
   </div>
 </section>
 {in_use_block()}
+<section class="band" aria-labelledby="svc-h">
+  <div class="wrap">
+    <div class="split-head"><h2 id="svc-h">Explore by service</h2><p>Each page covers what gets built, what you need, cost, and common questions.</p></div>
+    <div class="guide-list">{AI_HUB_LINKS}</div>
+  </div>
+</section>
 <section class="band" aria-labelledby="who-h">
   <div class="wrap">
     <div class="split-head"><h2 id="who-h">Built for owners, not IT departments.</h2><p>You do not need a technical background. You need a business with work worth taking off your plate.</p></div>
@@ -240,7 +246,7 @@ def ai_hub():
   </div>
 </section>"""
     return page("/ai/", "AI Training for Business Owners, One-on-One | Apollo Advising",
-                "One-on-one AI training and implementation with Denver McClure: CRM, lead generation, follow-up, and reporting for home service businesses, real estate investors, and small business owners. Zoom or in person in Dallas-Fort Worth.",
+                "One-on-one AI training and implementation: lead generation, CRMs, websites, financial reporting, and AI agents. By Zoom or in person in Dallas-Fort Worth.",
                 body, schemas=[service, faq_schema(AI_FAQ[1])], current="/ai/")
 
 
