@@ -27,16 +27,18 @@ OWNERSHIP = [
     ("Nothing kept", "Denver does not save copies of your data, prompts, or files after a session. Everything built for you is yours to own."),
 ]
 
-# Real systems in daily use. Christian Brothers Roofing is already a disclosed affiliate; the client build is described without a name.
-IN_USE = [
-    ("After-hours phones", "An AI agent answers calls after hours, captures the job, and routes it to the right inbox by morning.", "Christian Brothers Roofing"),
-    ("Financial report", "A Monday, Wednesday, and Friday email that pulls accounting and CRM data into one page of numbers.", "Christian Brothers Roofing"),
-    ("Command center", "One dashboard across the CRM, accounting, phones, website traffic, and search data.", "Christian Brothers Roofing"),
-    ("CRM watch", "An agent that monitors the CRM and flags jobs and leads that need attention.", "Christian Brothers Roofing"),
-    ("Lead generation", "AI-run social lead generation, message alerts, and text campaigns, with a tracker for new reviews.", "Christian Brothers Roofing"),
-    ("Website and follow-up", "This website, its lead emails, written property reports, and a monthly metrics report, all built and run with AI.", "Apollo Advising"),
-    ("A CRM from scratch", "A CRM built with the owner of a new Dallas-Fort Worth washing company, who owns and runs it himself.", "Client build"),
+# What Denver builds, biggest first. No company attributions on the site, by Denver's request.
+SOLUTIONS = [
+    ("Lead generation", "AI-run lead generation across social, your website, and referrals, with instant alerts so no lead waits for a callback."),
+    ("A CRM from scratch", "A CRM built around how your company actually sells: pipeline, follow-up, reminders, and reporting, owned by you."),
+    ("Website and follow-up", "A website built from scratch with lead capture, plus automated email and text follow-up that keeps working after hours."),
+    ("Financial reporting", "Reports that pull from your accounting and CRM and land in your inbox on a schedule, so you always know your numbers."),
+    ("Ongoing management", "Dashboards and monitoring that watch your pipeline, jobs, and inbox every day and flag what needs your attention."),
+    ("A team of AI agents", "A chief-of-staff agent and specialists for reporting, follow-up, and monitoring, working together across your tools."),
+    ("Phones and customers", "AI answering after hours, call summaries, text campaigns, and review requests that sound like your company."),
+    ("Your team", "Training for the people who do the work, with prompts and guardrails written for your business."),
 ]
+TOOLS_USED = ["Claude", "Grok", "Muse"]
 
 AI_WORK = [
     ("Your CRM", "Clean up the pipeline, automate the follow-up, and get the CRM to tell you what needs attention instead of the other way around."),
@@ -54,7 +56,7 @@ AI_WHO = [
 ]
 
 AI_FAQ = ("AI for business", [
-    ("What do AI sessions cover?", "Whatever costs you the most time or money right now. Common starting points are the CRM, lead response and follow-up, after-hours calls, reporting on your numbers, and admin work like estimates and proposals. Denver works through it with you, builds it with you, and teaches you to run it."),
+    ("What do AI sessions cover?", "Whatever costs you the most time or money right now. The biggest wins usually come first: lead generation, a CRM built from scratch, a website with automated follow-up, financial reporting, ongoing monitoring, and a team of AI agents that works across your tools. Denver works through it with you, builds it with you, and teaches you to run it."),
     ("Which AI tools do you use?", "Denver uses Claude, Grok, and Muse in his own companies every day, alongside the CRM, accounting, and phone systems those businesses already run on. Sessions start from the tools you have and add only what earns its cost."),
     ("Is this a course or a coaching program?", "No. It is one-on-one time with Denver, by Zoom or in person, on your business and your systems. There is no curriculum, no group, and no long contract."),
     ("Who owns what we build?", "You do. Tools are built in your accounts, and everything built for you is yours to own. Denver does not hold your data or your tools on his own computers and does not save any of it after a session."),
@@ -100,11 +102,13 @@ def ownership_block(dark=False):
 
 
 def in_use_block():
-    rows = "".join(f'<li><h3>{a}</h3><p>{b}</p><span>{c}</span></li>' for a, b, c in IN_USE)
-    return f"""<section class="band dark" id="in-use" aria-labelledby="use-h">
+    rows = "".join(f'<li><h3>{a}</h3><p>{b}</p></li>' for a, b in SOLUTIONS)
+    tools = "".join(f"<li>{t}</li>" for t in TOOLS_USED)
+    return f"""<section class="band dark" id="solutions" aria-labelledby="use-h">
   <div class="wrap">
-    <div class="split-head"><h2 id="use-h">Running today, not in a slide deck.</h2><p>These are systems Denver built and uses in companies he owns, and for a client who now runs his own. You learn from what is already working.</p></div>
-    <ul class="ledger">{rows}</ul>
+    <div class="split-head"><h2 id="use-h">What we can build for you.</h2><p>The same kinds of systems Denver builds and runs every day. Start with the one that costs you the most.</p></div>
+    <ul class="ledger ledger--two">{rows}</ul>
+    <div class="toolbar"><p>Built on the AI tools Denver uses daily, connected to the CRM, accounting, and phone systems you already run.</p><ul class="toolbar__names" aria-label="AI tools">{tools}</ul></div>
   </div>
 </section>"""
 
@@ -174,12 +178,11 @@ def home():
 
 
 def ai_hub():
-    work = "".join(f"<li><h3>{h}</h3><p>{p}</p></li>" for h, p in AI_WORK)
     who = "".join(f"<div><h3>{h}</h3><p>{p}</p></div>" for h, p in AI_WHO)
     service = {"@context": "https://schema.org", "@type": "Service", "@id": BASE + "/ai/#service", "name": "One-on-one AI training and implementation for business owners",
                "serviceType": "AI training and implementation", "provider": {"@id": BASE + "/#business"},
                "areaServed": [{"@type": "Country", "name": "United States"}, {"@type": "City", "name": "Dallas"}],
-               "description": "One-on-one sessions with Denver McClure to put AI to work on a business's CRM, lead generation, follow-up, reporting, and admin, and to teach the owner and team to run it. Clients own everything built.",
+               "description": "One-on-one sessions with Denver McClure to build AI lead generation, CRMs, websites with automated follow-up, financial reporting, monitoring, and teams of AI agents for a business, and to teach the owner and team to run it. Clients own everything built.",
                "offers": [{"@type": "Offer", "name": "One-on-one by Zoom or phone, per hour", "price": str(RATE), "priceCurrency": "USD"},
                           {"@type": "Offer", "name": "In-person half day within 50 miles of Dallas", "price": str(HALF_DAY), "priceCurrency": "USD"},
                           {"@type": "Offer", "name": "In-person full day within 50 miles of Dallas", "price": str(FULL_DAY), "priceCurrency": "USD"}]}
@@ -190,12 +193,6 @@ def ai_hub():
     <h1 id="ai-h" class="display launch__h">AI for your business</h1>
     <p class="launch__sub">One-on-one with an owner who uses AI in his companies every day. Find what is costing you time and money, build the fix with Denver, and learn to run it yourself.</p>
     <div class="actions"><a class="btn btn--light" href="/book/?s=intro">Book a free 30-minute call</a><a class="btn btn--ghost" href="/pricing/">See pricing</a></div>
-  </div>
-</section>
-<section class="band" aria-labelledby="work-h">
-  <div class="wrap">
-    <div class="split-head"><h2 id="work-h">Where AI pays for itself first.</h2><p>Sessions start with whatever costs you the most right now. These are the usual suspects.</p></div>
-    <ul class="grid-list">{work}</ul>
   </div>
 </section>
 {in_use_block()}
