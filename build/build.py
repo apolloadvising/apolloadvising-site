@@ -25,19 +25,21 @@ ORG = {
     "url": BASE + "/",
     "logo": LOGO_FULL,
     "image": SHARE,
-    "description": "Hourly rental property consulting for first-time investors, landlords, and retirees deciding whether to buy, hold, sell, refinance, change rental strategy, or 1031 exchange.",
+    "description": "One-on-one AI training and implementation for business owners and real estate investors, plus independent, hourly analysis for rental property decisions. Founded by Denver McClure, an owner who runs his companies on AI every day.",
     "email": EMAIL,
     "telephone": "+1-214-542-7380",
     "address": {"@type": "PostalAddress", "streetAddress": "5900 S Lake Forest Dr, Suite 300", "addressLocality": "McKinney", "addressRegion": "TX", "postalCode": "75070", "addressCountry": "US"},
     "areaServed": {"@type": "Country", "name": "United States"},
     "founder": {"@id": BASE + "/about/#denver"},
     "foundingDate": "2023",
-    "priceRange": "$199-$499",
+    "priceRange": "$199-$2,500",
     "sameAs": ["https://www.linkedin.com/in/denvermcclure/", "https://www.instagram.com/denvermcclure_/", "https://www.facebook.com/denver.mcclure.1"],
     "makesOffer": [
         {"@type": "Offer", "name": "Strategy Session (60 minutes)", "price": "199", "priceCurrency": "USD"},
         {"@type": "Offer", "name": "3-Hour Strategy Block", "price": "499", "priceCurrency": "USD"},
         {"@type": "Offer", "name": "Introductory Call (30 minutes)", "price": "0", "priceCurrency": "USD"},
+        {"@type": "Offer", "name": "In-person half day, Dallas-Fort Worth", "price": "1500", "priceCurrency": "USD"},
+        {"@type": "Offer", "name": "In-person full day, Dallas-Fort Worth", "price": "2500", "priceCurrency": "USD"},
     ],
 }
 PERSON = {
@@ -47,13 +49,13 @@ PERSON = {
     "name": "Denver McClure",
     "jobTitle": "Founder",
     "worksFor": {"@id": BASE + "/#business"},
-    "description": "Marine Corps veteran and Texas rental property owner who founded Apollo Advising in 2023.",
-    "knowsAbout": ["rental property analysis", "house hacking", "short-term rentals", "medium-term rentals", "long-term rentals", "ADU conversions", "1031 exchanges"],
+    "description": "Marine Corps veteran, Texas rental property owner, and owner of multiple operating businesses that run on AI every day. Founded Apollo Advising in 2023.",
+    "knowsAbout": ["AI for small business", "AI agents", "CRM automation", "lead generation", "business metrics and reporting", "rental property analysis", "house hacking", "short-term rentals", "medium-term rentals", "long-term rentals", "ADU conversions", "1031 exchanges"],
     "image": HEADSHOT,
     "sameAs": ["https://www.linkedin.com/in/denvermcclure/", "https://www.instagram.com/denvermcclure_/", "https://www.facebook.com/denver.mcclure.1"],
 }
 
-NAV = [("/#how-it-works", "How it works"), ("/#pricing", "Pricing"), ("/guides/", "Guides"), ("/tools/", "Tools"), ("/faq/", "FAQ"), ("/about/", "About")]
+NAV = [("/ai/", "AI for business"), ("/real-estate/", "Real estate"), ("/pricing/", "Pricing"), ("/guides/", "Guides"), ("/about/", "About")]
 UPDATED = "2026-10-12"
 UPDATED_TEXT = "October 12, 2026"
 
@@ -94,12 +96,11 @@ def page(path, title, desc, body, schemas=(), current=None, parent=None):
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#000000">
 <link rel="icon" href="{LOGO}">
 <link rel="apple-touch-icon" href="{TOUCH}">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap">
+<link rel="preload" href="/assets/fonts/instrument-sans.woff" as="font" type="font/woff" crossorigin>
+<link rel="preload" href="/assets/fonts/archivo-expanded.woff" as="font" type="font/woff" crossorigin>
 <link rel="stylesheet" href="/assets/site.css">
 {ld(ORG) if path == "/" else ""}
 {"".join(ld(s) for s in schemas)}
@@ -109,7 +110,7 @@ def page(path, title, desc, body, schemas=(), current=None, parent=None):
 <a class="skip" href="#main">Skip to content</a>
 <header class="top" id="top">
   <div class="wrap top__in">
-    <a class="brand" href="/"><img src="{LOGO}" alt="" width="34" height="34">Apollo Advising</a>
+    <a class="brand" href="/"><img src="{LOGO}" alt="" width="34" height="34"><span>Apollo Advising</span></a>
     <button class="menu-toggle" aria-expanded="false" aria-controls="nav">Menu</button>
     <nav class="nav" id="nav" aria-label="Main">{nav}<a class="btn btn--small" href="/book/?s=intro">Book a free call</a></nav>
   </div>
@@ -122,17 +123,19 @@ def page(path, title, desc, body, schemas=(), current=None, parent=None):
     <div class="foot__grid">
       <div>
         <h2>Apollo Advising</h2>
-        <p>Hourly rental property consulting for owners and buyers across the United States.</p>
+        <p>One-on-one AI training for business owners, and independent analysis for real estate decisions. By Zoom nationwide, in person across Dallas-Fort Worth.</p>
         <p>{ADDRESS}<br><a href="mailto:{EMAIL}">{EMAIL}</a></p>
       </div>
       <div>
-        <h2>Decisions</h2>
+        <h2>Practices</h2>
         <ul>
+          <li><a href="/ai/">AI for business</a></li>
+          <li><a href="/real-estate/">Real estate decisions</a></li>
+          <li><a href="/pricing/">Pricing</a></li>
           <li><a href="/buying-a-rental-property/">Buying a rental</a></li>
           <li><a href="/hold-sell-or-1031-exchange/">Hold, sell, or 1031</a></li>
           <li><a href="/refinance-and-equity-decisions/">Refinance and equity</a></li>
           <li><a href="/rental-strategy/">Rental strategy</a></li>
-          <li><a href="/retirees-and-long-time-landlords/">Rentals in retirement</a></li>
           <li><a href="/dallas-fort-worth/">Dallas-Fort Worth</a></li>
         </ul>
       </div>
@@ -140,9 +143,8 @@ def page(path, title, desc, body, schemas=(), current=None, parent=None):
         <h2>Resources</h2>
         <ul>
           <li><a href="/guides/">Guides</a></li>
-          <li><a href="/tools/1031-exchange-deadline-calculator/">1031 deadline calculator</a></li>
-          <li><a href="/tools/return-on-equity-calculator/">Return on equity calculator</a></li>
-          <li><a href="/tools/rental-strategy-calculator/">Rental strategy calculator</a></li>
+          <li><a href="/tools/">Free calculators</a></li>
+          <li><a href="/faq/">FAQ</a></li>
           <li><a href="/glossary/">Glossary</a></li>
           <li><a href="/free/">Free guides</a></li>
         </ul>
@@ -152,7 +154,6 @@ def page(path, title, desc, body, schemas=(), current=None, parent=None):
         <ul>
           <li><a href="/book/">Book a session</a></li>
           <li><a href="/property-analysis/">Property analysis report</a></li>
-          <li><a href="/faq/">FAQ</a></li>
           <li><a href="/about/">About Denver</a></li>
           <li><a href="/disclosures/">Disclosures</a></li>
           <li><a href="/privacy-policy/">Privacy policy</a></li>
@@ -162,7 +163,7 @@ def page(path, title, desc, body, schemas=(), current=None, parent=None):
         </ul>
       </div>
     </div>
-    <p class="disclose">Apollo Advising is a real estate and business consulting firm. It does not provide legal, tax, investment, insurance, or lending advice. Investment advice is offered only through Nashional Independent Investment Management LLC, a separate registered investment adviser. Insurance products are offered only through Nashional Independent Insurance Agency LLC. See <a class="link" href="/disclosures/">disclosures</a>.<br>&copy;2026 Apollo RE Advising LLC, dba Apollo Advising. A veteran-owned business.</p>
+    <p class="disclose">Apollo Advising is a real estate and business consulting firm. It does not provide legal, tax, investment, insurance, or lending advice. AI sessions are training and implementation help with AI tools, not financial, investment, or business management advice, and are not connected to Denver McClure&#39;s other companies. Investment advice is offered only through Nashional Independent Investment Management LLC, a separate registered investment adviser. Insurance products are offered only through Nashional Independent Insurance Agency LLC. See <a class="link" href="/disclosures/">disclosures</a>.<br>&copy;2026 Apollo RE Advising LLC, dba Apollo Advising. A veteran-owned business.</p>
   </div>
 </footer>
 <script>
@@ -177,14 +178,14 @@ var b=document.querySelector('.menu-toggle'),n=document.getElementById('nav');b.
 # ---------------- FAQ data (shared by /faq/ and the homepage teaser) ----------------
 FAQ = [
     ("About Apollo Advising", [
-        ("What does Apollo Advising do?", "Apollo Advising is an hourly real estate consulting firm. We help rental property owners and buyers work through a specific decision: whether to buy a property, keep or sell one, refinance, change rental strategy, or pursue a 1031 exchange. We provide research, analysis, and a clear view of the tradeoffs. You make the decision."),
-        ("Who is Apollo Advising for?", "First-time investors buying their first rental, early-stage landlords with one to a few properties, and retirees or long-time owners deciding whether to keep, simplify, or sell their rentals."),
-        ("Do you work with property owners outside Texas?", "Yes. Sessions are by phone or Zoom and we work with clients across the United States. Denver's own rental properties are in Texas, and the analysis methods apply to any U.S. market."),
-        ("Who is Denver McClure?", "Denver McClure is the founder of Apollo Advising. He is a Marine Corps veteran and an active Texas landlord who has used house hacking, ADU conversions, and short-term, medium-term, and long-term rental strategies in his own portfolio. He founded Apollo Advising in 2023."),
+        ("What does Apollo Advising do?", "Two things, both billed by the hour. First, one-on-one AI training and implementation for business owners and real estate investors: Denver works with you to put AI to work on your CRM, lead generation, follow-up, reporting, and the numbers behind your business, and teaches you to run it. Second, independent analysis for rental property decisions: whether to buy a property, keep or sell one, refinance, change rental strategy, or pursue a 1031 exchange. You make every decision."),
+        ("Who is Apollo Advising for?", "For AI: owners of small and mid-sized businesses, especially home service and trade companies, plus real estate investors and property managers. For real estate decisions: first-time investors buying their first rental, early-stage landlords with one to a few properties, and retirees or long-time owners deciding whether to keep, simplify, or sell their rentals."),
+        ("Do you work with property owners outside Texas?", "Yes. Sessions are by phone or Zoom with clients across the United States. In-person sessions are available within 50 miles of Dallas, and Denver travels on site for a day rate plus travel costs. Denver's own rental properties are in Texas, and the analysis methods apply to any U.S. market."),
+        ("Who is Denver McClure?", "Denver McClure is the founder of Apollo Advising. He is a Marine Corps veteran, an active Texas landlord, and the owner of multiple operating businesses that use AI every day for phones, lead generation, reporting, and operations. He founded Apollo Advising in 2023."),
         ("How is this different from a real estate agent or property manager?", "Agents are usually paid when a transaction happens, and property managers are paid to run the property. Apollo Advising is paid by the hour for analysis, whether you buy, sell, or do nothing. Denver does hold interests in affiliated firms, which are listed on our disclosures page."),
     ]),
     ("Pricing and scheduling", [
-        ("How much does it cost?", "$199 per hour, or $499 for a three-hour block that you can use within 12 months. The first 30-minute introductory call is free."),
+        ("How much does it cost?", "$199 per hour by phone or Zoom, or $499 for a three-hour block that you can use within 12 months. In person within 50 miles of Dallas: $1,500 for a half day or $2,500 for a full day, booked at least one week ahead. On site anywhere else: $2,500 per day plus travel and lodging at cost. The first 30-minute introductory call is free."),
         ("Can I get a written analysis without a call?", "Yes. The property analysis report covers one property in a written PDF: $99 for delivery within 2 business days, or $149 for delivery within 1 business day. You answer an intake form instead of booking a call, and the PDF comes with a code for 50% off your first one-hour strategy session, good for 30 days after delivery. Start at the property analysis page."),
         ("Do I pay for a full hour if we finish early?", "No. Time is billed in 15-minute increments, so a 45-minute session is billed as three quarters of an hour."),
         ("What counts as billable time?", "Meetings, plus work done for you outside of meetings: research, financial modeling, spreadsheets, written reports, recorded video walkthroughs, review of documents you send, and substantive correspondence. Anything expected to take more than an hour is estimated in advance and not started without your approval."),
@@ -312,7 +313,7 @@ PRICING = """
 </section>"""
 
 
-def home():
+def real_estate_hub():
     qs = "".join(
         f'<li class="load-in"><a href="{h}"><span class="q">{q}</span><span class="a">{a}</span></a></li>' for h, q, a in DECISIONS)
     teaser = [("How much does it cost?", FAQ_INDEX["How much does it cost?"]),
@@ -321,15 +322,16 @@ def home():
               ("Is Apollo Advising an investment adviser?", FAQ_INDEX["Is Apollo Advising an investment adviser?"]),
               ("Do you work with property owners outside Texas?", FAQ_INDEX["Do you work with property owners outside Texas?"])]
     body = f"""
-<section class="hero">
-  <div class="wrap">
-    <h1>Rental property decisions, made clear.</h1>
-    <p class="lede">Buy, hold, sell, refinance, change strategies, or 1031 exchange. Apollo Advising gives first-time investors, growing landlords, and retirees an independent, hourly second opinion on what to do next with a rental property.</p>
-    <div class="actions"><a class="btn" href="/book/?s=intro">Book a free 30-minute call</a><a class="btn btn--quiet" href="#pricing">See pricing</a></div>
-    <ul class="trust"><li>Marine Corps veteran</li><li>Active Texas landlord</li><li>Paid by the hour, not by the transaction</li></ul>
+<section class="launch launch--page">
+  {ORBIT}
+  <div class="wrap launch__in">
+    <h1 class="display launch__h">Real estate decisions</h1>
+    <p class="launch__sub">Buy, hold, sell, refinance, change strategies, or 1031 exchange. Apollo Advising gives first-time investors, growing landlords, and retirees an independent, hourly second opinion on what to do next with a rental property.</p>
+    <div class="actions"><a class="btn btn--light" href="/book/?s=intro">Book a free 30-minute call</a><a class="btn btn--ghost" href="#pricing">See pricing</a></div>
   </div>
+  <ul class="launch__facts wrap"><li>Active Texas landlord</li><li>Paid by the hour, not by the transaction</li><li>Marine Corps veteran</li></ul>
 </section>
-<section class="band" style="padding-top:0" aria-labelledby="decide-h">
+<section class="band" aria-labelledby="decide-h">
   <div class="wrap">
     <h2 id="decide-h" class="muted" style="font-size:1.15rem;letter-spacing:0;font-weight:500;margin-bottom:1.25rem">The decisions we help with</h2>
     <ul class="questions">{qs}</ul>
@@ -407,9 +409,9 @@ def home():
   </div>
 </section>
 {EQUITY_JS}"""
-    return page("/", "Rental Property Consulting for Investors | Apollo Advising",
+    return page("/real-estate/", "Rental Property Consulting for Investors | Apollo Advising",
                 "Hourly, independent rental property consulting for first-time investors, landlords, and retirees. Decide whether to buy, hold, sell, refinance, or 1031 exchange.",
-                body, schemas=[WEBSITE, faq_schema(teaser)])
+                body, schemas=[faq_schema(teaser), webpage("/real-estate/", "Real estate decisions", "Hourly, independent rental property consulting.")], current="/real-estate/")
 
 
 def faq_page():
@@ -449,7 +451,7 @@ def article(path, title, desc, h1, lede, sections, questions, leave, faq_qs, gua
     related = "".join(f'<a href="{h}">{q}</a>' for h, q, _ in DECISIONS if h.split("#")[0] != path)
     body = f"""
 <section class="page-hero"><div class="prose"><h1>{h1}</h1><p class="lede">{lede}</p>
-<div class="actions" style="margin-top:2rem"><a class="btn" href="/book/?s=intro">Book a free 30-minute call</a><a class="btn btn--quiet" href="/#pricing">See pricing</a></div>{byline()}</div></section>
+<div class="actions" style="margin-top:2rem"><a class="btn" href="/book/?s=intro">Book a free 30-minute call</a><a class="btn btn--quiet" href="/pricing/">See pricing</a></div>{byline()}</div></section>
 <section class="band" style="padding-top:2rem"><div class="prose article">
 <div class="answer"><p><strong>Short answer.</strong> {answer}</p></div>
 {secs}
@@ -1090,20 +1092,22 @@ def about():
   <img src="{HEADSHOT}" alt="Denver McClure, founder of Apollo Advising" width="800" height="1000">
   <div>
     <h1 style="font-size:clamp(2.4rem,5.5vw,4rem)">About Denver McClure</h1>
-    <p class="lede">Founder of Apollo Advising. Marine Corps veteran. Texas landlord.</p>
+    <p class="lede">Founder of Apollo Advising. Business owner. Marine Corps veteran. Texas landlord.</p>
   </div>
 </div></section>
 <section class="band" style="padding-top:2rem"><div class="prose article">
-  <p>Denver McClure founded Apollo Advising in 2023 to give rental property owners something he wished he had when he started: an independent person to check the numbers and talk through the decision, paid for time rather than for a transaction.</p>
-  <p>Before real estate, Denver served in the United States Marine Corps. He built his own rental portfolio in Texas one property at a time, using house hacking, an ADU conversion, and short-term, medium-term, and long-term rental strategies. Along the way he made the same decisions his clients bring to him now: whether to buy, how to run a property, when to refinance, and when to sell.</p>
+  <p>Denver McClure owns and runs multiple businesses, and he runs them on AI every day. In his roofing company that means an AI agent on the phones after hours, a financial report that writes itself three times a week, a single dashboard across the CRM, accounting, and phones, and AI-run lead generation. Apollo Advising itself, from this website to its lead emails and written reports, is built and run the same way.</p>
+  <p>That is the point of view he brings to every session. Costs are rising and good help is harder to find, and the owners who adapt will outlast the ones who wait. Denver sits down with you as another owner, not a vendor, to find the work AI can take off your plate, build it in your own accounts, and teach you to run it. You own everything that gets built, and he keeps none of your data.</p>
+  <p>He founded Apollo Advising in 2023 to give rental property owners something he wished he had when he started: an independent person to check the numbers and talk through the decision, paid for time rather than for a transaction. That practice continues alongside the AI work, at the same hourly rate.</p>
+  <p>Before business and real estate, Denver served in the United States Marine Corps. He built his own rental portfolio in Texas one property at a time, using house hacking, an ADU conversion, and short-term, medium-term, and long-term rental strategies. Along the way he made the same decisions his clients bring to him now: whether to buy, how to run a property, when to refinance, and when to sell.</p>
   <h2>How sessions work</h2>
-  <p>Every engagement starts with a free 30-minute call. If a session makes sense, you book an hour, or a three-hour block if the decision needs research or written analysis. You set the agenda. Denver brings the numbers, the tradeoffs, and the questions to take to your CPA, attorney, and lender. All decisions and implementation stay with you.</p>
+  <p>Every engagement starts with a free 30-minute call. If a session makes sense, you book an hour by Zoom, a three-hour block, or an in-person half or full day in Dallas-Fort Worth. You set the agenda. For AI work, Denver builds alongside you and teaches you to run it. For real estate, he brings the numbers, the tradeoffs, and the questions to take to your CPA, attorney, and lender. All decisions stay with you. See <a class="link" href="/pricing/">pricing</a>.</p>
   <h2>Other roles</h2>
-  <p>Denver also holds ownership interests in a registered investment adviser, a loan consulting firm, and a roofing company, and refers clients to independent partners for insurance, tax planning, and 1031 exchanges. Apollo Advising is a separate company and does not act on their behalf. Details are on the <a class="link" href="/disclosures/">disclosures</a> page.</p>
+  <p>Denver also holds ownership interests in a registered investment adviser, a loan consulting firm, and a roofing company, and refers clients to independent partners for insurance, tax planning, and 1031 exchanges. Apollo Advising is a separate company and does not act on their behalf. AI sessions are not connected to those companies and are not financial or investment advice. Details are on the <a class="link" href="/disclosures/">disclosures</a> page.</p>
   <div class="callout"><h2>Talk to Denver</h2><p>The first 30 minutes are free.</p><div class="actions"><a class="btn" href="/book/?s=intro">Book a free call</a><a class="btn btn--quiet" href="https://www.linkedin.com/in/denvermcclure/" rel="noopener" target="_blank">LinkedIn profile</a></div></div>
 </div></section>"""
     return page("/about/", "Denver McClure, Founder of Apollo Advising",
-                "Marine Corps veteran and active Texas landlord Denver McClure founded Apollo Advising to give rental property owners clear, hourly analysis.",
+                "Denver McClure owns and runs multiple businesses on AI every day. A Marine Corps veteran and Texas landlord, he offers one-on-one AI training and hourly real estate analysis.",
                 body, schemas=[PERSON], current="/about/")
 
 
@@ -1115,7 +1119,9 @@ def disclosures():
 <h2>What we are not</h2><p>Apollo Advising is not a law firm, accounting firm, registered investment adviser, insurance agency, mortgage broker, or lender, and it does not act as a client's real estate broker, property manager, escrow agent, or qualified intermediary.</p>
 <h2>No investment, tax, legal, insurance, or lending advice</h2><p>Nothing on this website or provided by Apollo Advising is legal advice, tax advice, investment advice or a recommendation regarding any security, insurance advice or the solicitation of any insurance product, or an offer, commitment, or recommendation of credit. Apollo Advising does not advise on securities of any kind, including Delaware Statutory Trusts (DSTs), REITs, tenant-in-common interests, private placements, and syndications.</p>
 <h2>Affiliated firms and compensation</h2><p>Denver McClure holds ownership interests in Nashional Independent Investment Management LLC (a registered investment adviser), Fiduciary Financing LLC, and Christian Brothers Roofing, and holds licensed positions in investment advice and insurance. Apollo Advising also refers clients to independent firms in which Denver holds no ownership interest, including Nashional Independent Insurance Agency LLC, Nashional Tax Planning, Above &amp; Below 1031, and Ownwell. Denver is not compensated for referrals to Above &amp; Below 1031. The Ownwell link is a partner referral page, and a referral fee may be paid to an affiliate. Apollo Advising is a separate legal entity and does not act on behalf of any of these firms or in any licensed capacity. Their services require a separate agreement, disclosures, and fees. Clients are never obligated to use them, and Denver McClure or an affiliate may be compensated if they use an affiliated firm. Investment advice is offered only through Nashional Independent Investment Management LLC. Insurance products are offered only through Nashional Independent Insurance Agency LLC. Apollo Advising's principal also invests in real estate for his own account, including in markets and property types discussed with clients.</p>
-<h2>No guarantee</h2><p>Real estate involves risk, including loss of principal. Projections, rent estimates, and valuations rest on assumptions that may not hold. Past results do not indicate future results.</p>
+<h2>AI training and implementation</h2><p>AI sessions are training and implementation help with AI tools and workflows. They are not financial, investment, tax, legal, or accounting advice, and they are not advice on how to manage, finance, or invest in a business. AI sessions are not connected to Nashional Independent Investment Management LLC, Fiduciary Financing LLC, Christian Brothers Roofing, or any other firm Denver McClure owns, and clients are never asked to use those firms as part of an AI engagement. Examples of systems used in Denver's own companies are shared to show what is possible, not as a promise of results. AI output can be inaccurate, and clients remain responsible for reviewing what their tools produce and for how they use it.</p>
+<h2>Client data and ownership</h2><p>Tools built during an engagement are set up in the client's own accounts and belong to the client. Denver McClure does not hold client data or client tools on his own computers and does not keep copies of client data, prompts, or files after a session. Clients are responsible for the terms of the AI and software services they subscribe to.</p>
+<h2>No guarantee</h2><p>Results from AI tools depend on each business and are not guaranteed. Real estate involves risk, including loss of principal. Projections, rent estimates, and valuations rest on assumptions that may not hold. Past results do not indicate future results.</p>
 <h2>Educational content</h2><p>Articles, FAQs, and examples on this site are general education, may become outdated, and are not advice for any specific situation. Consult a qualified attorney, CPA, investment adviser, insurance agent, or lender before acting.</p>
 <h2>Third-party links</h2><p>Links to other websites are provided for convenience. Apollo Advising is not responsible for their content.</p>
 </div></section>"""
@@ -1129,6 +1135,7 @@ def privacy():
 <h2>What we collect</h2><p>When you book a call or session, request a property analysis, or download a free worksheet, we collect the details you enter: your name, email, phone number, and anything you choose to share about your property. Bookings and payments are processed by Wix, which handles card details directly; Apollo Advising never sees or stores your full card number. Like most websites, we and our service providers collect basic technical data such as pages visited and browser type.</p>
 <h2>How we use it</h2><p>To schedule and hold sessions, prepare analysis you request, send confirmations and invoices, deliver free resources you request, answer your questions, and improve the website. If you opt in, we send occasional emails about rental property decisions; every email includes an unsubscribe link. We do not sell your personal information.</p>
 <h2>Who we share it with</h2><p>Service providers who help us run the business, such as Wix for scheduling, payments, and hosting, and video or phone providers for sessions. If you ask to be referred to an affiliated firm, we share only what you approve. We may disclose information when required by law.</p>
+<h2>AI engagements</h2><p>During AI sessions you may show or share business data, such as CRM records, reports, or financials, so Denver can help you build tools around it. That work happens in your own accounts. Denver does not copy your business data to his own computers and does not keep it after the session.</p>
 <h2>How long we keep it</h2><p>As long as needed to provide services and meet legal, tax, and recordkeeping obligations.</p>
 <h2>Your choices</h2><p>You can ask to see, correct, or delete your information, or opt out of marketing emails, by writing to <a class="link" href="mailto:{EMAIL}">{EMAIL}</a>. Residents of some states have additional rights under state law, and we honor those requests.</p>
 <h2>Security</h2><p>We use reasonable safeguards for the information we hold. No method of transmission or storage is completely secure.</p>
@@ -1139,13 +1146,13 @@ def privacy():
 
 def book():
     body = """
-<section class="page-hero"><div class="prose" style="width:min(100% - 2.5rem, 52rem)"><h1>Book time with Denver.</h1><p class="lede">Pick a session and a time. You will finish on a secure Wix booking form, where you enter your details and, for paid sessions, pay.</p></div></section>
+<section class="page-hero"><div class="prose" style="width:min(100% - 2.5rem, 52rem)"><h1>Book time with Denver.</h1><p class="lede">Pick a session and a time, for AI or real estate. You will finish on a secure Wix booking form, where you enter your details and, for paid sessions, pay. For an in-person half or full day, book the free intro call and we will set the date there.</p></div></section>
 <section class="band" style="padding-top:1rem"><div class="prose book" style="width:min(100% - 2.5rem, 52rem)">
   <div>
     <p class="step-label">Choose a session</p>
     <div class="choice" role="group" aria-label="Session type">
-      <button type="button" data-service="intro" aria-pressed="false"><strong>Free intro call</strong><span>30 minutes by phone. See whether a session makes sense.</span></button>
-      <button type="button" data-service="strategy" aria-pressed="true"><strong>Strategy session, $199</strong><span>60 minutes by phone or Zoom. Prorated in 15-minute increments.</span></button>
+      <button type="button" data-service="intro" aria-pressed="false"><strong>Free intro call</strong><span>30 minutes by phone. See whether a session makes sense, or plan an in-person day.</span></button>
+      <button type="button" data-service="strategy" aria-pressed="true"><strong>One-on-one session, $199</strong><span>60 minutes by phone or Zoom, for AI or real estate. Prorated in 15-minute increments.</span></button>
     </div>
   </div>
   <div>
@@ -1159,20 +1166,20 @@ def book():
   </div>
   <div class="callout" id="block" style="margin-top:1rem">
     <h2>Need more than an hour?</h2>
-    <p>The 3-hour strategy block is $499, saves $98, and is good for 12 months. After checkout, book each session here as usual.</p>
+    <p>The 3-hour strategy block is $499, saves $98, and is good for 12 months. Already have a block? <a href="/book/?s=block">Book a session with your block hours</a> and log in with the email you used at checkout.</p>
     <button class="btn" id="buy-block" type="button">Buy the 3-hour block</button>
   </div>
   <p class="note">Cancel or reschedule at least 24 hours ahead and the time goes back to your balance. Apollo Advising does not provide legal, tax, investment, insurance, or lending advice. Trouble booking? Email <a class="link" href="mailto:denver@apolloadvising.com">denver@apolloadvising.com</a>.</p>
 </div></section>
 <script type="module" src="/assets/book.js"></script>"""
-    return page("/book/", "Book a Rental Property Consultation | Apollo Advising",
-                "Book a free 30-minute intro call or a $199 one-hour strategy session on buying, holding, selling, refinancing, or 1031 exchanging a rental property.",
+    return page("/book/", "Book a Session with Denver McClure | Apollo Advising",
+                "Book a free 30-minute intro call or a $199 one-hour session by phone or Zoom, for AI training or a rental property decision.",
                 body)
 
 
 def thanks():
     body = """
-<section class="page-hero"><div class="prose"><h1>You're booked.</h1><p class="lede">A confirmation is on its way to your email. To prepare, gather the property address, purchase price, loan details, rent, and your goals for the property.</p>
+<section class="page-hero"><div class="prose"><h1>You're booked.</h1><p class="lede">A confirmation is on its way to your email. For an AI session, write down the two or three tasks that cost you the most time and the tools you use now. For a property, gather the address, purchase price, loan details, rent, and your goals.</p>
 <div class="actions" style="margin-top:2rem"><a class="btn" href="/">Back to home</a><a class="btn btn--quiet" href="/faq/">Read the FAQ</a></div></div></section>"""
     return page("/thanks/", "Thank you | Apollo Advising", "Your booking with Apollo Advising is confirmed.", body).replace(
         '<meta name="robots" content="index, follow, max-image-preview:large">', '<meta name="robots" content="noindex">')
@@ -1262,6 +1269,7 @@ def llms_full():
 
 
 exec(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "analysis_page.py")).read())
+exec(open(os.path.join(_HERE, "ai_pages.py")).read())
 exec(open(os.path.join(_HERE, "lead_page.py")).read())
 INDEXED += [h for h, _, _ in NEW_GUIDES] + [p for p, _ in LOCAL_PAGES] + [LEAD_PATH, MTR_PATH, "/free/"]
 PAGE_SLUGS_EXTRA = [h.strip("/") for h, _, _ in NEW_GUIDES] + [p.strip("/") for p, _ in LOCAL_PAGES] + [LEAD_PATH.strip("/"), LEAD_PATH.strip("/") + "/thanks", MTR_PATH.strip("/"), MTR_PATH.strip("/") + "/thanks", "free"]
@@ -1274,7 +1282,7 @@ PAGE_SLUGS = ["faq", "about", "book", "thanks", "disclosures", "privacy-policy",
               "hold-sell-or-1031-exchange", "refinance-and-equity-decisions", "rental-strategy", "retirees-and-long-time-landlords",
               "guides", "tools", "glossary", "guides/rental-property-return-on-equity", "guides/1031-exchange-timeline",
               "guides/short-term-vs-medium-term-vs-long-term-rental", "tools/1031-exchange-deadline-calculator",
-              "tools/return-on-equity-calculator", "tools/rental-strategy-calculator", "property-analysis"] + PAGE_SLUGS_EXTRA
+              "tools/return-on-equity-calculator", "tools/rental-strategy-calculator", "property-analysis", "ai", "pricing", "real-estate"] + PAGE_SLUGS_EXTRA
 
 
 def flat_urls(text):
@@ -1298,7 +1306,7 @@ def write(rel, text):
 OLD_REDIRECTS = {
     "/book-online": "/book/",
     "/blog": "/guides/",
-    "/services-7": "/#pricing",
+    "/services-7": "/pricing/",
     "/pricing-plans/plans-pricing": "/book/#block",
     "/service-page/introductory-consultation": "/book/?s=intro",
     "/service-page/strategy-session": "/book/",
@@ -1309,17 +1317,20 @@ OLD_REDIRECTS = {
     "/post/spring-mortgage-rate-update": "/refinance-and-equity-decisions/",
     "/post/why-invest-in-real-estate": "/buying-a-rental-property/",
     "/post/interview-with-nxt-mortgage": "/refinance-and-equity-decisions/",
-    "/post/leveraging-life-insurance-for-real-estate": "/",
+    "/post/leveraging-life-insurance-for-real-estate": "/real-estate/",
     "/post/maximizing-wealth-unveiling-the-tax-benefits-of-real-estate-investments": "/hold-sell-or-1031-exchange/",
     "/post/what-is-a-home-equity-investment-hei-and-how-can-i-use-it": "/refinance-and-equity-decisions/",
     "/post/what-is-a-mortgage-and-why-do-i-need-one": "/refinance-and-equity-decisions/",
     "/post/2024-mortgage-analysis-outlook": "/refinance-and-equity-decisions/",
-    "/post/meet-our-partner-fiduciary-financing": "/#firms-h",
+    "/post/meet-our-partner-fiduciary-financing": "/real-estate/#firms-h",
 }
 
 
 def main():
     write("index.html", home())
+    write("ai/index.html", ai_hub())
+    write("pricing/index.html", pricing_page())
+    write("real-estate/index.html", real_estate_hub())
     write("faq/index.html", faq_page())
     for slug, html_text in PAGES.items():
         if "/" + slug + "/" in MTR_PAGES:
@@ -1354,7 +1365,7 @@ def main():
         write("robots.txt", "User-agent: *\nDisallow: /\n")
     else:
         write("robots.txt", f"User-agent: *\nAllow: /\n\nUser-agent: GPTBot\nAllow: /\n\nUser-agent: OAI-SearchBot\nAllow: /\n\nUser-agent: ClaudeBot\nAllow: /\n\nUser-agent: PerplexityBot\nAllow: /\n\nUser-agent: Google-Extended\nAllow: /\n\nSitemap: {BASE}/sitemap.xml\n")
-    urls = "".join(f"<url><loc>{BASE}{u}</loc><lastmod>2026-10-12</lastmod></url>" for u in INDEXED)
+    urls = "".join(f"<url><loc>{BASE}{u}</loc><lastmod>2026-11-13</lastmod></url>" for u in INDEXED)
     write("sitemap.xml", f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n')
     if GH:
         import shutil
@@ -1366,6 +1377,9 @@ def main():
         bj = os.path.join(dst, "book.js")
         t = open(bj).read().replace('"/book.html"', '"/book/"').replace('"/thanks.html"', '"/thanks/"')
         open(bj, "w").write(t)
+        rootdir = os.path.join(os.path.dirname(__file__), "..", "site", "root")
+        for fn in os.listdir(rootdir):
+            shutil.copy(os.path.join(rootdir, fn), os.path.join(OUT, fn))
         open(os.path.join(OUT, "CNAME"), "w").write("www.apolloadvising.com\n")
         open(os.path.join(OUT, ".nojekyll"), "w").write("")
         for old, new in OLD_REDIRECTS.items():

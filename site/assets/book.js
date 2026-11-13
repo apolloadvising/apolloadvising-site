@@ -3,9 +3,21 @@
 const API = "https://www.wixapis.com";
 const CLIENT_ID = "de8b48ef-b9f8-4f9f-9320-eb82d8403b47";
 const TZ = "America/Chicago";
+
+// Wix needs the staff member and location on appointment slots, or the hosted booking form fails.
+const STAFF_RESOURCE_TYPE = "1cd44cf8-756f-41c3-bd90-3e2ffcaf1155";
+function slotForCheckout(slot) {
+  const out = { serviceId: slot.serviceId, scheduleId: slot.scheduleId, startDate: slot.localStartDate, endDate: slot.localEndDate, timezone: TZ };
+  const group = (slot.availableResources || []).find((g) => g.resourceTypeId === STAFF_RESOURCE_TYPE) || (slot.availableResources || [])[0];
+  const res = group && group.resources && group.resources[0];
+  if (res) out.resource = { id: res.id, name: res.name, scheduleId: slot.scheduleId };
+  if (slot.location) out.location = Object.assign({}, slot.location);
+  return out;
+}
 const KEY = "apollo-visitor-" + CLIENT_ID;
 const SERVICES = {
   strategy: { id: "c4f0da76-bfae-4601-bf9d-070ae9de6519", name: "Strategy Session" },
+  block: { id: "16126947-fc7a-4d93-8964-c79f8efbbfac", name: "Strategy Session (3-Hour Block)" },
   intro: { id: "cc815296-149c-433d-8e57-0796c8bd26b9", name: "Free intro call" }
 };
 const PLAN_ID = "f72f4929-db1b-4ec0-b4d3-a0ab9b8d1a94";
@@ -59,7 +71,8 @@ const els = {
   status: document.getElementById("status"),
   plan: document.getElementById("buy-block")
 };
-let current = new URLSearchParams(location.search).get("s") === "intro" ? "intro" : "strategy";
+const requested = new URLSearchParams(location.search).get("s");
+let current = SERVICES[requested] ? requested : "strategy";
 let currentDay = null;
 
 function setStatus(msg, err) { els.status.textContent = msg || ""; els.status.classList.toggle("err", !!err); }
@@ -102,7 +115,7 @@ async function loadAvailability() {
   try {
     let cursor = null, slots = [];
     do {
-      const body = { serviceId: SERVICES[current].id, fromLocalDate: ymd(start) + "T00:00:00", toLocalDate: ymd(end) + "T00:00:00", timeZone: TZ, bookable: true, cursorPaging: cursor ? { limit: 100, cursor } : { limit: 100 } };
+      const body = { serviceId: SERVICES[current].id, fromLocalDate: ymd(start) + "T00:00:00", toLocalDate: ymd(end) + "T00:00:00", timeZone: TZ, bookable: true, includeResourceTypeIds: [STAFF_RESOURCE_TYPE], cursorPaging: cursor ? { limit: 100, cursor } : { limit: 100 } };
       const res = await post("/service-availability/v2/time-slots", body);
       slots = slots.concat(res.timeSlots || []);
       cursor = res.cursorPagingMetadata && res.cursorPagingMetadata.cursors && res.cursorPagingMetadata.cursors.next;
@@ -144,11 +157,11 @@ async function checkout(slot, btn) {
       bookingsCheckout: {
         timezone: TZ,
         slotAvailability: {
-          slot: { serviceId: slot.serviceId, scheduleId: slot.scheduleId, startDate: slot.localStartDate, endDate: slot.localEndDate, timezone: TZ },
+          slot: slotForCheckout(slot),
           bookable: true
         }
       },
-      callbacks: { postFlowUrl: location.origin + "/book.html", thankYouPageUrl: location.origin + "/thanks.html" }
+      callbacks: { postFlowUrl: location.origin + "/book/", thankYouPageUrl: location.origin + "/thanks/" }
     });
     location.href = res.redirectSession.fullUrl;
   } catch (e) {
@@ -163,7 +176,7 @@ async function buyBlock() {
   try {
     const res = await post("/_api/redirects-api/v1/redirect-session", {
       paidPlansCheckout: { planId: PLAN_ID },
-      callbacks: { postFlowUrl: location.origin + "/book.html", thankYouPageUrl: location.origin + "/thanks.html" }
+      callbacks: { postFlowUrl: location.origin + "/book/", thankYouPageUrl: location.origin + "/thanks/" }
     });
     location.href = res.redirectSession.fullUrl;
   } catch (e) {
