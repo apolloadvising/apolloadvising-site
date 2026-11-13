@@ -51,7 +51,7 @@ Q: How is this different from a real estate agent or property manager?
 A: Agents are usually paid when a transaction happens, and property managers are paid to run the property. Apollo Advising is paid by the hour for analysis, whether you buy, sell, or do nothing. Denver does hold interests in affiliated firms, which are listed on our disclosures page.
 ### AI for business
 Q: What do AI sessions cover?
-A: Whatever costs you the most time or money right now. Common starting points are the CRM, lead response and follow-up, after-hours calls, reporting on your numbers, and admin work like estimates and proposals. Denver works through it with you, builds it with you, and teaches you to run it.
+A: Whatever costs you the most time or money right now. The biggest wins usually come first: lead generation, a CRM built from scratch, a website with automated follow-up, financial reporting, ongoing monitoring, and a team of AI agents that works across your tools. Denver works through it with you, builds it with you, and teaches you to run it.
 Q: Which AI tools do you use?
 A: Denver uses Claude, Grok, and Muse in his own companies every day, alongside the CRM, accounting, and phone systems those businesses already run on. Sessions start from the tools you have and add only what earns its cost.
 Q: Is this a course or a coaching program?
