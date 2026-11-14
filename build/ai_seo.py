@@ -252,7 +252,7 @@ def ai_service_page(path, d):
 </div></section>
 <section class="band dark finale"><div class="wrap">
   <h2 class="display">Start with 30 free minutes.</h2>
-  <div class="actions"><a class="btn btn--light" href="/book/?s=intro">Book a free call</a><a class="btn btn--ghost" href="/ai/">All AI services</a></div>
+  <div class="actions"><a class="btn btn--light" href="/book/?s=intro">Book a free call</a><a class="btn btn--ghost" href="/ai/cost-review/">Free AI cost review</a></div>
 </div></section>"""
     return page(path, d["title"], d["desc"], body, schemas=[service, faq_schema(faq), webpage(path, d["h1"], d["desc"])],
                 current="/ai/", parent=("AI for business", "/ai/"))

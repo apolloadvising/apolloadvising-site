@@ -131,6 +131,7 @@ def page(path, title, desc, body, schemas=(), current=None, parent=None):
         <h2>Practices</h2>
         <ul>
           <li><a href="/ai/">AI for business</a></li>
+          <li><a href="/ai/cost-review/">Free AI cost review</a></li>
           <li><a href="/ai/lead-generation/">AI lead generation</a></li>
           <li><a href="/ai/ai-agents/">AI agents</a></li>
           <li><a href="/ai/dallas-fort-worth/">AI in Dallas-Fort Worth</a></li>
@@ -1275,9 +1276,10 @@ def llms_full():
 exec(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "analysis_page.py")).read())
 exec(open(os.path.join(_HERE, "ai_pages.py")).read())
 exec(open(os.path.join(_HERE, "ai_seo.py")).read())
+exec(open(os.path.join(_HERE, "ai_intake.py")).read())
 exec(open(os.path.join(_HERE, "lead_page.py")).read())
 INDEXED += [h for h, _, _ in NEW_GUIDES] + [p for p, _ in LOCAL_PAGES] + [LEAD_PATH, MTR_PATH, "/free/"]
-PAGE_SLUGS_EXTRA = [h.strip("/") for h, _, _ in NEW_GUIDES] + [p.strip("/") for p, _ in LOCAL_PAGES] + [LEAD_PATH.strip("/"), LEAD_PATH.strip("/") + "/thanks", MTR_PATH.strip("/"), MTR_PATH.strip("/") + "/thanks", "free"] + [p.strip("/") for p in ALL_AI]
+PAGE_SLUGS_EXTRA = [h.strip("/") for h, _, _ in NEW_GUIDES] + [p.strip("/") for p, _ in LOCAL_PAGES] + [LEAD_PATH.strip("/"), LEAD_PATH.strip("/") + "/thanks", MTR_PATH.strip("/"), MTR_PATH.strip("/") + "/thanks", "free"] + [p.strip("/") for p in ALL_AI] + PAGE_SLUGS_EXTRA_AI
 LLMS = LLMS.replace("- [Free tools]", "".join(f"- [{t}]({BASE}{h})\n" for h, t, _ in NEW_GUIDES) + f"- [Dallas-Fort Worth rental property consulting]({BASE}/dallas-fort-worth/)\n" + "".join(f"- [{n} County, Texas]({BASE}{p})\n" for p, n in LOCAL_PAGES[1:]) + f"- [Free hold, sell, or 1031 checklist]({BASE}{LEAD_PATH})\n- [Free guide: short-term vs medium-term rental]({BASE}{MTR_PATH})\n- [Sample rental property analysis report (PDF)]({BASE}{SAMPLE_PDF})\n- [Free tools]", 1)
 LLMS = LLMS.replace("- Contact: ", "- Local focus: based in McKinney, Texas, serving Dallas, Collin, Denton, and Tarrant counties, plus clients nationwide.\n- Contact: ", 1)
 
@@ -1340,6 +1342,8 @@ def main():
         write(_p.strip("/") + "/index.html", ai_service_page(_p, _d))
     for _p, _d in AI_GUIDES.items():
         write(_p.strip("/") + "/index.html", ai_guide_page(_p, _d))
+    write(COST_PATH.strip("/") + "/index.html", ai_cost_review_page())
+    write(COST_THANKS.strip("/") + "/index.html", ai_cost_thanks_page())
     write("faq/index.html", faq_page())
     for slug, html_text in PAGES.items():
         if "/" + slug + "/" in MTR_PAGES:

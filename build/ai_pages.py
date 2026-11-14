@@ -169,7 +169,7 @@ def home():
   <div class="wrap">
     <h2 id="cta-h" class="display">Start with 30 free minutes.</h2>
     <p>Bring the problem that costs you the most. Leave knowing whether AI can fix it, or what to do with the property.</p>
-    <div class="actions"><a class="btn btn--light" href="/book/?s=intro">Book a free call</a><a class="btn btn--ghost" href="/pricing/">See pricing</a></div>
+    <div class="actions"><a class="btn btn--light" href="/book/?s=intro">Book a free call</a><a class="btn btn--ghost" href="/ai/cost-review/">Free AI cost review</a></div>
   </div>
 </section>"""
     return page("/", "AI for Business and Real Estate Decisions | Apollo Advising",
@@ -192,7 +192,7 @@ def ai_hub():
   <div class="wrap launch__in">
     <h1 id="ai-h" class="display launch__h">AI for your business</h1>
     <p class="launch__sub">One-on-one with an owner who uses AI in his companies every day. Find what is costing you time and money, build the fix with Denver, and learn to run it yourself.</p>
-    <div class="actions"><a class="btn btn--light" href="/book/?s=intro">Book a free 30-minute call</a><a class="btn btn--ghost" href="/pricing/">See pricing</a></div>
+    <div class="actions"><a class="btn btn--light" href="/ai/cost-review/">Get a free AI cost review</a><a class="btn btn--ghost" href="/book/?s=intro">Book a free 30-minute call</a></div>
   </div>
 </section>
 {in_use_block()}
