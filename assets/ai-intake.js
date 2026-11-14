@@ -50,6 +50,7 @@
       }
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val("email"))) return fail("Enter a valid email address.", form.elements.email);
+    if (form.querySelector('[name="sms"]').checked && !phone(val("phone"))) return fail("Add a 10-digit phone number so Denver can text you, or uncheck the text option.", form.elements.phone);
     return true;
   }
 
@@ -78,7 +79,7 @@
     if (val("one_thing")) lines.push("Fix in 90 days: " + val("one_thing"));
     lines.push("");
     lines.push("MEET: " + (val("meet") || "-") + " | Timeline: " + (val("timeline") || "-") + " | Heard via: " + (val("heard") || "-"));
-    lines.push("Email opt-in: " + (form.querySelector('[name="optin"]').checked ? "yes" : "no"));
+    lines.push("Email opt-in: " + (form.querySelector('[name="optin"]').checked ? "yes" : "no") + " | Text messages OK: " + (form.querySelector('[name="sms"]').checked ? "yes" : "no"));
     return { text: lines.join("\n").slice(0, 3900), total: total, spend: spendLines.length ? "about $" + total.toLocaleString() + " per month across " + spendLines.length + " categories" : "" };
   }
 
