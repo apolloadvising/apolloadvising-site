@@ -108,7 +108,7 @@ def ai_cost_thanks_page():
     body = """
 <section class="page-hero page-hero--dark"><div class="wrap">
   <h1 class="display">Received.</h1>
-  <p class="lede">Denver will review your answers before your call. Pick a time for your free 30-minute call now so it does not slip.</p>
+  <p class="lede">Denver will review your answers before your call. Pick a time for your free 30-minute call now so it does not slip. Denver will confirm your appointment time shortly.</p>
   <div class="actions" style="margin-top:2rem"><a class="btn btn--light" href="/book/?s=intro">Book my free call</a><a class="btn btn--ghost" href="/ai/">Back to AI for business</a></div>
 </div></section>
 <section class="band"><div class="prose"><p>Use the same email you just entered when you book, so your answers match your appointment. Questions in the meantime? Email <a class="link" href="mailto:denver@apolloadvising.com">denver@apolloadvising.com</a>.</p></div></section>"""
@@ -187,7 +187,7 @@ def day_thanks_page():
     body = """
 <section class="page-hero page-hero--dark"><div class="wrap">
   <h1 class="display">Request received.</h1>
-  <p class="lede">Denver will follow up within one business day to confirm the date and timing. Nothing is booked or charged until you both agree on it.</p>
+  <p class="lede">Denver will follow up shortly to confirm the date and timing. Nothing is booked or charged until you both agree on it.</p>
   <div class="actions" style="margin-top:2rem"><a class="btn btn--light" href="/">Back to home</a><a class="btn btn--ghost" href="/pricing/">See pricing</a></div>
 </div></section>
 <section class="band"><div class="prose"><p>Questions in the meantime? Email <a class="link" href="mailto:denver@apolloadvising.com">denver@apolloadvising.com</a>.</p></div></section>"""

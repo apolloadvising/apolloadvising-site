@@ -1151,7 +1151,7 @@ def privacy():
 
 def book():
     body = """
-<section class="page-hero"><div class="prose" style="width:min(100% - 2.5rem, 52rem)"><h1>Book time with Denver.</h1><p class="lede">Pick a session and a time, for AI or real estate. You will finish on a secure Wix booking form, where you enter your details and, for paid sessions, pay. For a 3-hour block or an in-person day, <a class="link" href="/book/day/">request your preferred dates</a> and Denver will follow up to confirm the timing.</p></div></section>
+<section class="page-hero"><div class="prose" style="width:min(100% - 2.5rem, 52rem)"><h1>Book time with Denver.</h1><p class="lede">Pick a session and a time, for AI or real estate. You will finish on a secure Wix booking form, where you enter your details and, for paid sessions, pay. Every time you pick is a request until Denver confirms it, which he does shortly. For a 3-hour block or an in-person day, <a class="link" href="/book/day/">request your preferred dates</a> and Denver will follow up to confirm the timing.</p></div></section>
 <section class="band" style="padding-top:1rem"><div class="prose book" style="width:min(100% - 2.5rem, 52rem)">
   <div>
     <p class="step-label">Choose a session</p>
@@ -1166,6 +1166,7 @@ def book():
   </div>
   <div>
     <p class="step-label">Choose a time</p>
+    <p class="note" style="margin:0 0 .75rem">Denver will confirm your appointment time shortly after you book.</p>
     <p class="status" id="status" role="status" aria-live="polite"></p>
     <div class="times" id="times"></div>
   </div>
@@ -1184,9 +1185,9 @@ def book():
 
 def thanks():
     body = """
-<section class="page-hero"><div class="prose"><h1>You're booked.</h1><p class="lede">A confirmation is on its way to your email. For an AI session, write down the two or three tasks that cost you the most time and the tools you use now. For a property, gather the address, purchase price, loan details, rent, and your goals.</p>
+<section class="page-hero"><div class="prose"><h1>Request received.</h1><p class="lede">Denver will confirm your appointment time shortly, and you will get an email as soon as he does. To prepare: For an AI session, write down the two or three tasks that cost you the most time and the tools you use now. For a property, gather the address, purchase price, loan details, rent, and your goals.</p>
 <div class="actions" style="margin-top:2rem"><a class="btn" href="/">Back to home</a><a class="btn btn--quiet" href="/faq/">Read the FAQ</a></div></div></section>"""
-    return page("/thanks/", "Thank you | Apollo Advising", "Your booking with Apollo Advising is confirmed.", body).replace(
+    return page("/thanks/", "Thank you | Apollo Advising", "Your appointment request was received. Denver will confirm your time shortly.", body).replace(
         '<meta name="robots" content="index, follow, max-image-preview:large">', '<meta name="robots" content="noindex">')
 
 
