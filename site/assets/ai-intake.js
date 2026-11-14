@@ -9,7 +9,7 @@
   var err = form.querySelector(".pa-err");
   var btn = form.querySelector("[data-ai-submit]");
   // Midpoints of each monthly spend range, used only for a rough total in Denver's summary.
-  var MID = { "$0": 0, "Under $100": 50, "$100 to $500": 300, "$500 to $1,000": 750, "$1,000 to $2,500": 1750, "$2,500 or more": 3000 };
+  var MID = { "$0 (free version)": 0, "Under $100": 50, "$100 to $500": 300, "$500 to $1,000": 750, "$1,000 to $2,500": 1750, "$2,500 or more": 3000 };
 
   function val(n) { var el = form.elements[n]; if (!el) return ""; if (el.length && el[0] && el[0].type === "radio") { var c = form.querySelector('[name="' + n + '"]:checked'); return c ? c.value : ""; } return (el.value || "").trim(); }
   function checks(n) { return Array.prototype.map.call(form.querySelectorAll('[name="' + n + '"]:checked'), function (c) { return c.value; }); }
@@ -56,9 +56,10 @@
   function phone(p) { var d = p.replace(/\D/g, ""); if (d.length === 10) return "+1" + d; if (d.length === 11 && d[0] === "1") return "+" + d; return ""; }
 
   function summary() {
-    var lines = [], total = 0, unknown = 0, spendLines = [];
+    var lines = [], total = 0, unknown = 0, spendLines = [], notUsed = [];
     form.querySelectorAll('[name^="spend_"]').forEach(function (s) {
       var k = s.name.slice(6), tool = val("tool_" + k), sp = s.value;
+      if (sp === "We do not use this") { notUsed.push(labelFor(s).replace(": monthly cost", "")); return; }
       if (!tool && !sp) return;
       var lab = labelFor(s).replace(": monthly cost", "");
       spendLines.push("- " + lab + ": " + (tool || "(tool not given)") + ", " + (sp || "cost not given"));
@@ -69,6 +70,7 @@
     lines.push("TOOLS AND MONTHLY SPEND:");
     lines = lines.concat(spendLines.length ? spendLines : ["- none given"]);
     if (spendLines.length) lines.push("Rough monthly total from ranges: about $" + total.toLocaleString() + (unknown ? " (" + unknown + " marked not sure)" : ""));
+    if (notUsed.length) lines.push("Does not use: " + notUsed.join(", "));
     lines.push("");
     lines.push("HEADACHES: " + (checks("headaches").join("; ") || "none checked"));
     lines.push("Admin hours per week: " + (val("admin_hours") || "-") + " | Lead response: " + (val("response") || "-"));

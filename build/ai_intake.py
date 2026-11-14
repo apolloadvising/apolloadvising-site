@@ -5,7 +5,7 @@ AI_FORM_ID = "5a0ce2c0-4ce6-40a4-8cc6-27300fe05474"
 COST_PATH = "/ai/cost-review/"
 COST_THANKS = "/ai/cost-review/thanks/"
 
-SPEND = ["$0", "Under $100", "$100 to $500", "$500 to $1,000", "$1,000 to $2,500", "$2,500 or more", "Not sure"]
+SPEND = ["We do not use this", "$0 (free version)", "Under $100", "$100 to $500", "$500 to $1,000", "$1,000 to $2,500", "$2,500 or more", "Not sure"]
 TOOL_CATS = [
     ("crm", "CRM", "HubSpot, JobNimbus, AccuLynx, a spreadsheet"),
     ("web", "Website and hosting", "Wix, Squarespace, WordPress, an agency"),
@@ -14,7 +14,7 @@ TOOL_CATS = [
     ("email", "Email marketing", "Mailchimp, Constant Contact"),
     ("acct", "Accounting and reporting", "QuickBooks, Xero, a bookkeeper"),
     ("sched", "Scheduling or field service software", "Jobber, Housecall Pro, ServiceTitan"),
-    ("ai", "AI tools you already pay for", "ChatGPT, Claude, Copilot"),
+    ("ai", "AI tools you already pay for", "ChatGPT, Claude, Grok"),
     ("other", "Everything else, combined", "Other subscriptions"),
 ]
 HEADACHES = ["Missed calls or slow lead response", "Weak follow-up after estimates or inquiries", "A messy or unused CRM",
@@ -37,9 +37,9 @@ AI_INTAKE_SECTIONS = [
         ("select", "revenue", "Annual revenue (optional)", {"options": ["Under $250,000", "$250,000 to $1 million", "$1 million to $5 million",
                                                                        "More than $5 million", "Prefer not to say"]}),
     ]),
-    ("tools", "Your tools and monthly spend", "A rough range is plenty. This is where most of the savings conversation starts.", None,
+    ("tools", "Your tools and monthly spend", "Every row is optional. Skip anything you do not use, or choose \"We do not use this.\" A rough range is plenty, and this is where most of the savings conversation starts.", None,
      [f for k, label, ph in TOOL_CATS for f in (("text", f"tool_{k}", f"{label}: which tool?", {"ph": ph}),
-                                                 ("select", f"spend_{k}", f"{label}: monthly cost", {"options": SPEND}))]),
+                                                 ("select", f"spend_{k}", f"{label}: monthly cost", {"options": SPEND, "hint": "Optional"}))]),
     ("pain", "Your biggest headaches", "Pick the ones that cost you the most. Three is a good number.", None, [
         ("checks", "headaches", "What gets in the way most?", {"options": HEADACHES}),
         ("select", "admin_hours", "Hours a week you spend on admin and paperwork", {"options": ["Under 5", "5 to 10", "10 to 20", "More than 20", "Not sure"]}),
@@ -50,7 +50,7 @@ AI_INTAKE_SECTIONS = [
     ("plan", "Meeting and timing", "", None, [
         ("radio", "meet", "How would you like to meet?", {"options": ["Zoom or phone", "In person in Dallas-Fort Worth", "Not sure yet"]}),
         ("select", "timeline", "When do you want to start?", {"options": ["As soon as possible", "Within 30 days", "In 1 to 3 months", "Just exploring"]}),
-        ("select", "heard", "How did you hear about Apollo Advising?", {"options": ["Google or Bing search", "An AI assistant like ChatGPT or Copilot",
+        ("select", "heard", "How did you hear about Apollo Advising?", {"options": ["Google or Bing search", "An AI assistant like ChatGPT, Claude, or Grok",
                                                                                       "Referral", "Social media", "Other"]}),
     ]),
 ]
