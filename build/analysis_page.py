@@ -155,7 +155,7 @@ def pa_field(kind, name, label, o):
     elif kind == "textarea":
         ctl = f'<textarea id="{nid}" name="{name}" rows="3"{_attrs(o)}{desc}></textarea>'
     else:
-        typ = {"email": "email", "tel": "tel", "url": "url"}.get(kind, "text")
+        typ = {"email": "email", "tel": "tel", "url": "url", "date": "date"}.get(kind, "text")
         im = ' inputmode="decimal"' if kind in ("money", "pct", "num") else ""
         ctl = f'<input id="{nid}" name="{name}" type="{typ}"{im}{_attrs(o)}{desc}>'
         pre = "$" if kind == "money" else ""

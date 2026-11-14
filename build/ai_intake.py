@@ -4,6 +4,8 @@
 AI_FORM_ID = "5a0ce2c0-4ce6-40a4-8cc6-27300fe05474"
 COST_PATH = "/ai/cost-review/"
 COST_THANKS = "/ai/cost-review/thanks/"
+SMS_TEXT = ("Denver may text me at the phone number above about scheduling and my request. "
+            "Message and data rates may apply. Reply STOP to opt out anytime.")
 
 SPEND = ["We do not use this", "$0 (free version)", "Under $100", "$100 to $500", "$500 to $1,000", "$1,000 to $2,500", "$2,500 or more", "Not sure"]
 TOOL_CATS = [
@@ -84,6 +86,7 @@ def ai_cost_review_page():
     <section class="pa-sec" id="ai-send" data-title="Send"><h3>Send your answers</h3>
       <label class="pa-consent"><input type="checkbox" name="consent" required><span>I understand my answers are used only to prepare for my call and are not shared, and that this review covers software, tools, and workflows. It is not financial, investment, tax, or accounting advice.</span></label>
       <label class="pa-consent"><input type="checkbox" name="optin"><span>Optional: send me occasional emails with practical AI ideas for my business. Unsubscribe anytime.</span></label>
+      <label class="pa-consent"><input type="checkbox" name="sms"><span>Optional: {SMS_TEXT}</span></label>
       <p class="pa-err" role="alert" hidden></p>
       <button class="btn" type="submit" data-ai-submit>Send and book my free call</button>
       <p class="note">Please do not include passwords, customer records, or account numbers.</p>
@@ -117,3 +120,81 @@ def ai_cost_thanks_page():
 INDEXED += [COST_PATH]
 PAGE_SLUGS_EXTRA_AI = [COST_PATH.strip("/"), COST_THANKS.strip("/")]
 LLMS = LLMS.replace(f"- [Pricing]({BASE}/pricing/)\n", f"- [Pricing]({BASE}/pricing/)\n- [Free AI cost review]({BASE}{COST_PATH}): a short intake on your tools, software costs, and headaches, followed by a free 30-minute call.\n", 1)
+
+
+# Longer engagements (3-hour block, in-person days, on-site travel days) are requested by preferred date, not booked by time.
+# Answers go to the Wix form "In-Person Day Request"; Denver follows up to confirm the timing.
+DAY_FORM_ID = "d4146909-d43a-49c0-897a-a3e140205ff2"
+DAY_PATH = "/book/day/"
+DAY_THANKS = "/book/day/thanks/"
+ENGAGEMENTS = [f"3-hour block by Zoom or phone ({usd(BLOCK)})",
+               f"In person, half day within {LOCAL_MILES} miles of Dallas ({usd(HALF_DAY)})",
+               f"In person, full day within {LOCAL_MILES} miles of Dallas ({usd(FULL_DAY)})",
+               f"On site with travel ({usd(TRAVEL_DAY)} per day plus travel at cost)"]
+DAY_SECTIONS = [
+    ("what", "What you want to book", "", None, [
+        ("radio", "engagement", "Session", {"req": True, "options": ENGAGEMENTS}),
+        ("radio", "topic", "Topic", {"options": ["AI for my business", "Real estate", "Both"]}),
+    ]),
+    ("dates", "Preferred dates", "Pick up to three days that work. No need to choose a time. Denver will follow up to confirm the timing with you.", None, [
+        ("date", "date1", "First choice", {"req": True}),
+        ("date", "date2", "Second choice", {}),
+        ("date", "date3", "Third choice", {}),
+        ("radio", "daypart", "Time of day, if you have a preference", {"options": ["Morning", "Afternoon", "Either"]}),
+    ]),
+    ("you", "You and your business", "", None, [
+        ("text", "first_name", "First name", {"req": True, "auto": "given-name"}),
+        ("text", "last_name", "Last name", {"auto": "family-name"}),
+        ("email", "email", "Email", {"req": True, "auto": "email"}),
+        ("tel", "phone", "Phone", {"auto": "tel"}),
+        ("text", "company", "Company", {"auto": "organization"}),
+        ("text", "location", "Where we would meet", {"ph": "City, or office address for in-person days"}),
+        ("textarea", "goals", "What do you want to get done?", {"wide": True}),
+    ]),
+]
+
+
+def day_request_page():
+    secs = "".join(
+        f'<section class="pa-sec" id="day-{sid}" data-title="{t}"><h3>{t}</h3>' + (f'<p class="pa-intro">{intro}</p>' if intro else "")
+        + '<div class="pa-grid">' + "".join(pa_field(*f) for f in fields) + "</div></section>"
+        for sid, t, intro, _, fields in DAY_SECTIONS)
+    body = f"""
+<section class="page-hero page-hero--dark"><div class="wrap">
+  <h1 class="display">Request a longer session</h1>
+  <p class="lede">For the 3-hour block, an in-person half or full day, or an on-site day with travel. Pick the days that work for you. Denver will follow up to confirm the timing.</p>
+</div></section>
+<section class="band band--mist" id="day-form" aria-labelledby="day-form-h"><div class="wrap">
+  <div class="head"><h2 id="day-form-h">Your request</h2><p>About 2 minutes. Nothing is charged until the date is confirmed. In-person days need at least {LOCAL_NOTICE} notice, and travel days need {TRAVEL_NOTICE}.</p></div>
+  <form class="pa" id="day-request" novalidate data-form="{DAY_FORM_ID}" data-next="{DAY_THANKS}">
+    {secs}
+    <section class="pa-sec" id="day-send" data-title="Send"><h3>Send your request</h3>
+      <label class="pa-consent"><input type="checkbox" name="consent" required><span>I understand this is a request, not a confirmed booking, and that Denver will follow up by email or phone to confirm the date, time, and terms.</span></label>
+      <label class="pa-consent"><input type="checkbox" name="sms"><span>Optional: {SMS_TEXT}</span></label>
+      <p class="pa-err" role="alert" hidden></p>
+      <button class="btn" type="submit" data-day-submit>Send my request</button>
+      <p class="note">Only need an hour? <a class="link" href="/book/">Book a {usd(RATE)} session</a> or a <a class="link" href="/book/?s=intro">free 30-minute call</a> instead.</p>
+    </section>
+  </form>
+</div></section>
+<script src="/assets/day-request.js" defer></script>"""
+    return page(DAY_PATH, "Request an In-Person Day or 3-Hour Block | Apollo Advising",
+                "Request a 3-hour block, an in-person half or full day near Dallas, or an on-site day. Pick preferred dates and Denver McClure follows up to confirm timing.",
+                body, current="/pricing/", parent=("Book", "/book/"))
+
+
+def day_thanks_page():
+    body = """
+<section class="page-hero page-hero--dark"><div class="wrap">
+  <h1 class="display">Request received.</h1>
+  <p class="lede">Denver will follow up within one business day to confirm the date and timing. Nothing is booked or charged until you both agree on it.</p>
+  <div class="actions" style="margin-top:2rem"><a class="btn btn--light" href="/">Back to home</a><a class="btn btn--ghost" href="/pricing/">See pricing</a></div>
+</div></section>
+<section class="band"><div class="prose"><p>Questions in the meantime? Email <a class="link" href="mailto:denver@apolloadvising.com">denver@apolloadvising.com</a>.</p></div></section>"""
+    html_ = page(DAY_THANKS, "Thanks, Your Request Was Received | Apollo Advising", "Your request was received. Denver will follow up to confirm timing.",
+                 body, current="/pricing/", parent=("Book", "/book/"))
+    return html_.replace('<meta name="robots" content="index, follow, max-image-preview:large">', '<meta name="robots" content="noindex">')
+
+
+INDEXED += [DAY_PATH]
+PAGE_SLUGS_EXTRA_AI += [DAY_PATH.strip("/"), DAY_THANKS.strip("/")]

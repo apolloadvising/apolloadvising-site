@@ -253,7 +253,7 @@ def ai_hub():
 def pricing_page():
     terms = [
         ("Billing", "Phone and Zoom time is billed in 15-minute increments. Work between sessions, such as builds, research, modeling, and written analysis, is billed at the same rate. Anything expected to take more than an hour is estimated first and not started without your approval."),
-        ("In person", f"In-person days within {LOCAL_MILES} miles of Dallas are scheduled on a free intro call and booked at least {LOCAL_NOTICE} ahead. A half day is up to 4 hours and a full day is up to 8 hours on site."),
+        ("In person", f"In-person days within {LOCAL_MILES} miles of Dallas are requested by preferred date on the <a class=\"link\" href=\"/book/day/\">request form</a> and booked at least {LOCAL_NOTICE} ahead. A half day is up to 4 hours and a full day is up to 8 hours on site."),
         ("Travel", f"On-site days outside the local area are booked at least {TRAVEL_NOTICE} ahead. Airfare, lodging, and ground travel are billed at cost with no markup, and you approve them before anything is booked."),
         ("Changes", "Cancel or reschedule a phone or Zoom session at least 24 hours ahead and the time goes back to your balance. Missed sessions are charged as used. In-person and travel terms are confirmed in writing when the date is set."),
         ("Ownership", "Everything built for you is yours. Denver does not hold your data or your tools on his own computers and does not keep copies after a session."),
@@ -268,7 +268,7 @@ def pricing_page():
 </div></section>
 <section class="band" style="padding-top:clamp(3rem,6vw,4.5rem)"><div class="wrap">
   {price_rows(PRICE_ROWS)}
-  <div class="actions" style="margin-top:2rem"><a class="btn" href="/book/?s=intro">Book a free call</a><a class="btn btn--quiet" href="/book/">Book a {usd(RATE)} session</a><a class="btn btn--quiet" href="/book/#block">Get the 3-hour block</a></div>
+  <div class="actions" style="margin-top:2rem"><a class="btn" href="/book/?s=intro">Book a free call</a><a class="btn btn--quiet" href="/book/">Book a {usd(RATE)} session</a><a class="btn btn--quiet" href="/book/#block">Get the 3-hour block</a><a class="btn btn--quiet" href="/book/day/">Request an in-person day</a></div>
 </div></section>
 <section class="band band--mist"><div class="wrap">
   <a class="pa-strip" href="/property-analysis/" style="margin-top:0"><span><strong>Real estate, in writing, without a call.</strong> A property analysis report on one rental: $99 for a PDF in 2 business days, or $149 for the next business day.</span><span class="pa-strip__go">Start the intake form</span></a>

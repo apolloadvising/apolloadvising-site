@@ -194,7 +194,7 @@ FAQ = [
         ("Can I get a written analysis without a call?", "Yes. The property analysis report covers one property in a written PDF: $99 for delivery within 2 business days, or $149 for delivery within 1 business day. You answer an intake form instead of booking a call, and the PDF comes with a code for 50% off your first one-hour strategy session, good for 30 days after delivery. Start at the property analysis page."),
         ("Do I pay for a full hour if we finish early?", "No. Time is billed in 15-minute increments, so a 45-minute session is billed as three quarters of an hour."),
         ("What counts as billable time?", "Meetings, plus work done for you outside of meetings: research, financial modeling, spreadsheets, written reports, recorded video walkthroughs, review of documents you send, and substantive correspondence. Anything expected to take more than an hour is estimated in advance and not started without your approval."),
-        ("What is your cancellation policy?", "Cancel or reschedule at least 24 hours ahead and the time goes back to your balance. Missed sessions are charged as used."),
+        ("What is your cancellation policy?", "Sessions are booked at least 24 hours ahead. Cancel or reschedule at least 24 hours ahead and the time goes back to your balance. Missed sessions are charged as used."),
         ("What should I bring to my first session?", "The property address, purchase price and date, current loan balance and rate, current or expected rent, 12 months of income and expenses if you own it, and what you want the property to do for you over the next few years."),
     ]),
     ("Common decisions", [
@@ -1138,7 +1138,7 @@ def privacy():
 <section class="page-hero"><div class="prose"><h1>Privacy policy</h1><p class="lede">How Apollo Advising collects, uses, and protects your information. Last updated October 12, 2026.</p></div></section>
 <section class="band" style="padding-top:2rem"><div class="prose article">
 <h2>What we collect</h2><p>When you book a call or session, request a property analysis, or download a free worksheet, we collect the details you enter: your name, email, phone number, and anything you choose to share about your property. Bookings and payments are processed by Wix, which handles card details directly; Apollo Advising never sees or stores your full card number. Like most websites, we and our service providers collect basic technical data such as pages visited and browser type.</p>
-<h2>How we use it</h2><p>To schedule and hold sessions, prepare analysis you request, send confirmations and invoices, deliver free resources you request, answer your questions, and improve the website. If you opt in, we send occasional emails about rental property decisions; every email includes an unsubscribe link. We do not sell your personal information.</p>
+<h2>How we use it</h2><p>To schedule and hold sessions, prepare analysis you request, send confirmations and invoices, deliver free resources you request, answer your questions, and improve the website. If you opt in, we send occasional emails about rental property decisions; every email includes an unsubscribe link. If you check the box agreeing to text messages, Denver may text you about scheduling and your request; reply STOP to opt out anytime. Mobile numbers and text consent are never sold or shared with third parties for their marketing. We do not sell your personal information.</p>
 <h2>Who we share it with</h2><p>Service providers who help us run the business, such as Wix for scheduling, payments, and hosting, and video or phone providers for sessions. If you ask to be referred to an affiliated firm, we share only what you approve. We may disclose information when required by law.</p>
 <h2>AI engagements</h2><p>During AI sessions you may show or share business data, such as CRM records, reports, or financials, so Denver can help you build tools around it. That work happens in your own accounts. Denver does not copy your business data to his own computers and does not keep it after the session.</p>
 <h2>How long we keep it</h2><p>As long as needed to provide services and meet legal, tax, and recordkeeping obligations.</p>
@@ -1151,12 +1151,12 @@ def privacy():
 
 def book():
     body = """
-<section class="page-hero"><div class="prose" style="width:min(100% - 2.5rem, 52rem)"><h1>Book time with Denver.</h1><p class="lede">Pick a session and a time, for AI or real estate. You will finish on a secure Wix booking form, where you enter your details and, for paid sessions, pay. For an in-person half or full day, book the free intro call and we will set the date there.</p></div></section>
+<section class="page-hero"><div class="prose" style="width:min(100% - 2.5rem, 52rem)"><h1>Book time with Denver.</h1><p class="lede">Pick a session and a time, for AI or real estate. You will finish on a secure Wix booking form, where you enter your details and, for paid sessions, pay. For a 3-hour block or an in-person day, <a class="link" href="/book/day/">request your preferred dates</a> and Denver will follow up to confirm the timing.</p></div></section>
 <section class="band" style="padding-top:1rem"><div class="prose book" style="width:min(100% - 2.5rem, 52rem)">
   <div>
     <p class="step-label">Choose a session</p>
     <div class="choice" role="group" aria-label="Session type">
-      <button type="button" data-service="intro" aria-pressed="false"><strong>Free intro call</strong><span>30 minutes by phone. See whether a session makes sense, or plan an in-person day.</span></button>
+      <button type="button" data-service="intro" aria-pressed="false"><strong>Free intro call</strong><span>30 minutes by phone. See whether a session makes sense.</span></button>
       <button type="button" data-service="strategy" aria-pressed="true"><strong>One-on-one session, $299</strong><span>60 minutes by phone or Zoom, for AI or real estate. Prorated in 15-minute increments.</span></button>
     </div>
   </div>
@@ -1171,8 +1171,8 @@ def book():
   </div>
   <div class="callout" id="block" style="margin-top:1rem">
     <h2>Need more than an hour?</h2>
-    <p>The 3-hour strategy block is $799, saves $98, and is good for 12 months. Already have a block? <a href="/book/?s=block">Book a session with your block hours</a> and log in with the email you used at checkout.</p>
-    <button class="btn" id="buy-block" type="button">Buy the 3-hour block</button>
+    <p>The 3-hour strategy block is $799, saves $98, and is good for 12 months. Already have a block, or ready to schedule one? <a href="/book/day/">Request your preferred dates</a> and Denver will follow up to set the times.</p>
+    <div class="actions"><button class="btn" id="buy-block" type="button">Buy the 3-hour block</button><a class="btn btn--quiet" href="/book/day/">Request an in-person day</a></div>
   </div>
   <p class="note">Cancel or reschedule at least 24 hours ahead and the time goes back to your balance. Apollo Advising does not provide legal, tax, investment, insurance, or lending advice. Trouble booking? Email <a class="link" href="mailto:denver@apolloadvising.com">denver@apolloadvising.com</a>.</p>
 </div></section>
@@ -1344,6 +1344,8 @@ def main():
         write(_p.strip("/") + "/index.html", ai_guide_page(_p, _d))
     write(COST_PATH.strip("/") + "/index.html", ai_cost_review_page())
     write(COST_THANKS.strip("/") + "/index.html", ai_cost_thanks_page())
+    write(DAY_PATH.strip("/") + "/index.html", day_request_page())
+    write(DAY_THANKS.strip("/") + "/index.html", day_thanks_page())
     write("faq/index.html", faq_page())
     for slug, html_text in PAGES.items():
         if "/" + slug + "/" in MTR_PAGES:
